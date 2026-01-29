@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Old City Mongolia</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #fdf5e6, #f5e8d9);
+        }
+
+        .login-container {
+            max-width: 420px;
+            margin: 120px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 14px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .login-container h1 {
+            margin: 0 0 10px 0;
+            color: #987654;
+            text-align: center;
+        }
+
+        .login-container p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .login-container label {
+            display: block;
+            margin-bottom: 6px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #987654, #7a5d47);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .login-container button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(152, 118, 84, 0.3);
+        }
+
+        .error-banner {
+            background: #fce8e6;
+            border: 1px solid #f3b3ad;
+            color: #b3261e;
+            padding: 10px 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Admin Login</h1>
+        <p>Sign in to manage bookings</p>
+        <div class="error-banner" id="errorBanner">Invalid username or password</div>
+        <form method="POST" action="/admin/login">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" autocomplete="username" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" autocomplete="current-password" required>
+
+            <button type="submit">Log In</button>
+        </form>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('error') === '1') {
+            document.getElementById('errorBanner').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

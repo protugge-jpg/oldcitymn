@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Northern Lakes Expedition trip details and flexible durations from 5 to 9 days.">
+    <title>Northern Lakes Expedition - Old City Mongolia</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-hero {
+            height: 420px;
+            background: linear-gradient(135deg, rgba(152, 118, 84, 0.85), rgba(80, 50, 30, 0.85)),
+                        url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1400&h=800&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .page-hero p {
+            font-size: 1.1rem;
+            margin-top: 12px;
+            opacity: 0.95;
+        }
+
+        .page-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px 80px;
+        }
+
+        .trip-summary {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
+        }
+
+        .trip-summary h2 {
+            color: #987654;
+            font-size: 2rem;
+            margin-top: 0;
+        }
+
+        .trip-summary p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .duration-selector {
+            background: #fdf5e6;
+            border-radius: 14px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .duration-selector h3 {
+            color: #987654;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .duration-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+        }
+
+        .duration-button {
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background: white;
+            color: #333;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .duration-button:hover,
+        .duration-button:focus {
+            border-color: #987654;
+            box-shadow: 0 6px 15px rgba(152, 118, 84, 0.2);
+            outline: none;
+        }
+
+        .duration-button.active {
+            background: linear-gradient(135deg, #987654, #7a5d47);
+            color: white;
+            border-color: #987654;
+        }
+
+        .duration-content {
+            background: white;
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .duration-content.is-hidden {
+            display: none;
+        }
+
+        .duration-placeholder {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            color: #666;
+            text-align: center;
+        }
+
+        .duration-content.is-transitioning {
+            opacity: 0;
+            transform: translateY(8px);
+        }
+
+        .content-section {
+            margin-bottom: 25px;
+        }
+
+        .content-section h4 {
+            color: #987654;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .content-section p,
+        .content-section li {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .content-section ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .book-trip-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 26px;
+            background: linear-gradient(135deg, #987654, #7a5d47);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .book-trip-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(152, 118, 84, 0.3);
+        }
+
+        .booking-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .booking-note {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 14px;
+            padding: 30px;
+            max-width: 520px;
+            width: 100%;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-content h3 {
+            margin-top: 0;
+            color: #987654;
+        }
+
+        .modal-close {
+            border: none;
+            background: transparent;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #987654;
+            float: right;
+        }
+
+        .modal form {
+            display: grid;
+            gap: 12px;
+        }
+
+        .modal input,
+        .modal select {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            font-family: inherit;
+        }
+
+        .modal .submit-btn {
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background: #987654;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .trip-summary,
+            .duration-content {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="navbar-container">
+            <button class="hamburger-menu" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="accommodations.html" class="nav-link">Accommodations</a></li>
+                <li><a href="trips.html" class="nav-link">Trips</a></li>
+                <li><a href="tickets.html" class="nav-link">Tickets</a></li>
+                <li><a href="events.html" class="nav-link">Events</a></li>
+                <li><a href="tips.html" class="nav-link">Tips</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="page-hero">
+        <div>
+            <h1>Northern Lakes Expedition</h1>
+            <p>Flexible 5–9 day journeys around Mongolia's pristine lakes and forests.</p>
+        </div>
+    </header>
+
+    <main class="page-container">
+        <section class="trip-summary">
+            <h2>Trip Overview</h2>
+            <p>
+                Journey through crystal-clear lakes and pine forests with flexible durations. Customize your stay to
+                include trekking, kayaking, and cultural encounters. All details below are placeholders and ready for
+                future updates.
+            </p>
+        </section>
+
+        <section class="duration-selector" aria-labelledby="duration-title">
+            <h3 id="duration-title">Choose Your Duration</h3>
+            <div class="duration-buttons" role="group" aria-label="Select trip duration">
+                <button type="button" class="duration-button" data-duration="5">5 Days</button>
+                <button type="button" class="duration-button" data-duration="6">6 Days</button>
+                <button type="button" class="duration-button" data-duration="7">7 Days</button>
+                <button type="button" class="duration-button" data-duration="8">8 Days</button>
+                <button type="button" class="duration-button" data-duration="9">9 Days</button>
+            </div>
+        </section>
+
+        <div class="duration-placeholder" id="durationPlaceholder">
+            Select a trip duration above to reveal the itinerary and included activities.
+        </div>
+
+        <section class="duration-content is-hidden" aria-live="polite" id="durationContent">
+            <div class="content-section">
+                <h4 id="duration-heading">5-Day Itinerary</h4>
+                <p id="duration-overview"></p>
+            </div>
+            <div class="content-section">
+                <h4>Day-by-Day Itinerary</h4>
+                <ul id="duration-itinerary"></ul>
+            </div>
+            <div class="content-section">
+                <h4>Included Activities</h4>
+                <ul id="duration-activities"></ul>
+            </div>
+            <div class="booking-row">
+                <p class="booking-note">Ready to reserve your preferred duration? Booking form opens in a modal.</p>
+                <button type="button" class="book-trip-btn" id="openBooking">Book This Trip</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Old City Mongolia. All rights reserved.</p>
+            <p>Created with care for travelers seeking authentic experiences.</p>
+        </div>
+    </footer>
+
+    <div class="modal" id="bookingModal" aria-hidden="true" role="dialog" aria-labelledby="booking-title">
+        <div class="modal-content">
+            <button class="modal-close" type="button" aria-label="Close booking form">&times;</button>
+            <h3 id="booking-title">Book Northern Lakes Expedition</h3>
+            <form id="bookingForm">
+                <input type="text" name="guestName" placeholder="Full Name" required>
+                <input type="email" name="guestEmail" placeholder="Email Address" required>
+                <select name="duration" required>
+                    <option value="">Select duration</option>
+                    <option value="5">5 Days</option>
+                    <option value="6">6 Days</option>
+                    <option value="7">7 Days</option>
+                    <option value="8">8 Days</option>
+                    <option value="9">9 Days</option>
+                </select>
+                <input type="date" name="startDate" required>
+                <button type="submit" class="submit-btn">Continue to Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Trip duration data stored in a modular object for easy future updates.
+        const tripDurationData = {
+            5: {
+                overview: "Placeholder overview for a 5-day Northern Lakes expedition. Includes scenic lakeside hikes and cultural stops.",
+                itinerary: [
+                    "Day 1: Arrival and lakeside orientation.",
+                    "Day 2: Forest trek and panoramic lookout.",
+                    "Day 3: Kayak session and fishing demo (placeholder).",
+                    "Day 4: Nomadic family visit and campfire dinner.",
+                    "Day 5: Return journey and departure."
+                ],
+                activities: [
+                    "Guided lakeside hikes",
+                    "Kayaking (placeholder)",
+                    "Cultural visit",
+                    "Campfire dinner"
+                ]
+            },
+            6: {
+                overview: "Placeholder overview for a 6-day Northern Lakes expedition with extra trekking time.",
+                itinerary: [
+                    "Day 1: Arrival and camp setup.",
+                    "Day 2: Sunrise hike and forest walk.",
+                    "Day 3: Kayaking and lakeside picnic.",
+                    "Day 4: Village visit and cultural workshop (placeholder).",
+                    "Day 5: Scenic ridge trek.",
+                    "Day 6: Return travel day."
+                ],
+                activities: [
+                    "Forest trekking",
+                    "Lakeside picnic",
+                    "Cultural workshop (placeholder)",
+                    "Scenic ridge hike"
+                ]
+            },
+            7: {
+                overview: "Placeholder overview for a 7-day Northern Lakes expedition with added rest and adventure days.",
+                itinerary: [
+                    "Day 1: Arrival and orientation.",
+                    "Day 2: Lakeside hike.",
+                    "Day 3: Kayak and fishing day.",
+                    "Day 4: Cultural visit and craft demo.",
+                    "Day 5: Optional mountain trek (placeholder).",
+                    "Day 6: Relaxation and photography day.",
+                    "Day 7: Departure."
+                ],
+                activities: [
+                    "Fishing (placeholder)",
+                    "Craft demo",
+                    "Optional mountain trek",
+                    "Photography outing"
+                ]
+            },
+            8: {
+                overview: "Placeholder overview for an 8-day Northern Lakes expedition with immersive nature activities.",
+                itinerary: [
+                    "Day 1: Arrival and camp briefing.",
+                    "Day 2: Forest hike and lookout.",
+                    "Day 3: Kayak adventure.",
+                    "Day 4: Cultural immersion day.",
+                    "Day 5: Boat excursion (placeholder).",
+                    "Day 6: Scenic ridge trek.",
+                    "Day 7: Free exploration day.",
+                    "Day 8: Return journey."
+                ],
+                activities: [
+                    "Kayak adventure",
+                    "Cultural immersion",
+                    "Boat excursion (placeholder)",
+                    "Scenic ridge trek"
+                ]
+            },
+            9: {
+                overview: "Placeholder overview for a 9-day Northern Lakes expedition with full immersion in the northern taiga.",
+                itinerary: [
+                    "Day 1: Arrival and introduction.",
+                    "Day 2: Lakeside hike.",
+                    "Day 3: Kayak and fishing.",
+                    "Day 4: Cultural visit.",
+                    "Day 5: Remote lake excursion (placeholder).",
+                    "Day 6: Trekking day.",
+                    "Day 7: Photography day.",
+                    "Day 8: Optional add-on excursion.",
+                    "Day 9: Departure."
+                ],
+                activities: [
+                    "Remote lake excursion",
+                    "Extended trekking",
+                    "Photography day",
+                    "Optional add-on"
+                ]
+            }
+        };
+
+        const buttons = document.querySelectorAll('.duration-button');
+        const overview = document.getElementById('duration-overview');
+        const itineraryList = document.getElementById('duration-itinerary');
+        const activitiesList = document.getElementById('duration-activities');
+        const durationHeading = document.getElementById('duration-heading');
+        const contentPanel = document.getElementById('durationContent');
+        const placeholderPanel = document.getElementById('durationPlaceholder');
+
+        const setActiveDuration = (days) => {
+            const data = tripDurationData[days];
+            if (!data) return;
+
+            if (contentPanel.classList.contains('is-hidden')) {
+                contentPanel.classList.remove('is-hidden');
+                if (placeholderPanel) {
+                    placeholderPanel.style.display = 'none';
+                }
+            }
+
+            contentPanel.classList.add('is-transitioning');
+
+            setTimeout(() => {
+                durationHeading.textContent = `${days}-Day Itinerary`;
+                overview.textContent = data.overview;
+
+                itineraryList.innerHTML = '';
+                data.itinerary.forEach((item) => {
+                    const li = document.createElement('li');
+                    li.textContent = item;
+                    itineraryList.appendChild(li);
+                });
+
+                activitiesList.innerHTML = '';
+                data.activities.forEach((item) => {
+                    const li = document.createElement('li');
+                    li.textContent = item;
+                    activitiesList.appendChild(li);
+                });
+
+                buttons.forEach((button) => {
+                    const isActive = button.dataset.duration === String(days);
+                    button.classList.toggle('active', isActive);
+                    button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+                });
+
+                contentPanel.classList.remove('is-transitioning');
+            }, 200);
+        };
+
+        buttons.forEach((button) => {
+            button.addEventListener('click', () => {
+                setActiveDuration(button.dataset.duration);
+            });
+        });
+
+
+        const bookingModal = document.getElementById('bookingModal');
+        const openBooking = document.getElementById('openBooking');
+        const closeBooking = document.querySelector('.modal-close');
+        const bookingForm = document.getElementById('bookingForm');
+
+        openBooking.addEventListener('click', () => {
+            bookingModal.classList.add('active');
+            bookingModal.setAttribute('aria-hidden', 'false');
+        });
+
+        closeBooking.addEventListener('click', () => {
+            bookingModal.classList.remove('active');
+            bookingModal.setAttribute('aria-hidden', 'true');
+        });
+
+        bookingModal.addEventListener('click', (event) => {
+            if (event.target === bookingModal) {
+                bookingModal.classList.remove('active');
+                bookingModal.setAttribute('aria-hidden', 'true');
+            }
+        });
+
+        bookingForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            alert('Booking form submitted! This is a placeholder for the real booking flow.');
+            bookingModal.classList.remove('active');
+            bookingModal.setAttribute('aria-hidden', 'true');
+            bookingForm.reset();
+        });
+    </script>
+</body>
+</html>

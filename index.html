@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Old City Mongolia - A warm and welcoming guesthouse offering authentic Mongolian experiences and comfortable accommodations.">
+    <title>Old City Mongolia - Guesthouse</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="navbar-container">
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger-menu" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="accommodations.html" class="nav-link">Accommodations</a></li>
+                <li><a href="trips.html" class="nav-link">Trips</a></li>
+                <li><a href="tickets.html" class="nav-link">Tickets</a></li>
+                <li><a href="events.html" class="nav-link">Events</a></li>
+                <li><a href="tips.html" class="nav-link">Tips</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">Welcome to Old City Mongolia</h1>
+                <p class="hero-tagline">Experience authentic hospitality and timeless beauty</p>
+                <a href="accommodations.html" class="cta-button">Book Your Stay</a>
+            </div>
+        </section>
+
+        <!-- Accommodations Section -->
+        <section class="section accommodations-section" id="accommodations">
+            <div class="section-container">
+                <h2 class="section-title">Our Accommodations</h2>
+                <p class="section-intro">
+                    Discover our thoughtfully designed rooms and suites that blend traditional Mongolian style with modern comfort. 
+                    Each space is carefully curated to provide a warm, welcoming atmosphere for your stay.
+                </p>
+                
+                <!-- Rooms Grid -->
+                <div class="cards-grid" style="margin: 2.5rem 0;">
+                    <!-- Male Room -->
+                    <div class="card room-card" data-room="male">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1631049307038-da5ec5d79645?w=400&h=300&fit=crop" alt="Male Room - Old City Mongolia" loading="lazy">
+                        </div>
+                        <h3 class="card-title">Male Room</h3>
+                        <div class="card-content">
+                            <p>Comfortable shared accommodation with traditional Mongolian décor. <strong>8 beds available.</strong></p>
+                            <p style="font-size: 0.9rem; color: #666;">From <strong>$25/night</strong></p>
+                            <button class="book-btn" onclick="event.stopPropagation(); openModal('roomBookingModal')" aria-label="Book Male Room">Book Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Female Room -->
+                    <div class="card room-card" data-room="female">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1631049307038-da5ec5d79645?w=400&h=300&fit=crop" alt="Female Room - Old City Mongolia" loading="lazy">
+                        </div>
+                        <h3 class="card-title">Female Room</h3>
+                        <div class="card-content">
+                            <p>Safe and welcoming shared space for female travelers. <strong>8 beds available.</strong></p>
+                            <p style="font-size: 0.9rem; color: #666;">From <strong>$25/night</strong></p>
+                            <button class="book-btn" onclick="event.stopPropagation(); openModal('roomBookingModal')" aria-label="Book Female Room">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="accommodations.html" class="read-more-btn">Explore All Rooms</a>
+            </div>
+        </section>
+
+        <!-- Trips Section -->
+        <section class="section trips-section" id="trips">
+            <div class="section-container">
+                <h2 class="section-title">Adventure Awaits</h2>
+                <p class="section-intro">
+                    Embark on unforgettable journeys through Mongolia's stunning landscapes. 
+                    From cultural tours to nature expeditions, we offer authentic experiences that connect you with the heart of Mongolia.
+                </p>
+
+                <!-- Trips Grid -->
+                <div class="cards-grid" style="margin: 2.5rem 0;">
+                    <div class="card trip-card" data-trip="gobi">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&h=800&fit=crop" alt="Gobi Desert dunes" loading="lazy">
+                        </div>
+                        <h3 class="card-title">Gobi Desert Discovery</h3>
+                        <div class="card-content">
+                            <p>Traverse iconic desert landscapes with flexible pacing and immersive camps.</p>
+                            <p style="font-size: 0.9rem; color: #666; margin: 0.5rem 0;"><strong>Flexible 5–9 days</strong></p>
+                            <p style="font-size: 0.9rem; color: #666;">From <strong>$450/person</strong></p>
+                            <button class="book-trip-btn" onclick="event.stopPropagation(); openModal('tripBookingModal')" aria-label="Book Gobi Desert Discovery">Book Trip</button>
+                        </div>
+                    </div>
+
+                    <div class="card trip-card" data-trip="lakes">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1200&h=800&fit=crop" alt="Northern lakes and forest" loading="lazy">
+                        </div>
+                        <h3 class="card-title">Northern Lakes Expedition</h3>
+                        <div class="card-content">
+                            <p>Discover pristine lakes, cool forests, and cultural encounters in the north.</p>
+                            <p style="font-size: 0.9rem; color: #666; margin: 0.5rem 0;"><strong>Flexible 5–9 days</strong></p>
+                            <p style="font-size: 0.9rem; color: #666;">From <strong>$650/person</strong></p>
+                            <button class="book-trip-btn" onclick="event.stopPropagation(); openModal('tripBookingModal')" aria-label="Book Northern Lakes Expedition">Book Trip</button>
+                        </div>
+                    </div>
+
+                    <div class="card trip-card" data-trip="nomadic">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&h=800&fit=crop" alt="Mongolian steppe landscape" loading="lazy">
+                        </div>
+                        <h3 class="card-title">Nomadic Heritage Journey</h3>
+                        <div class="card-content">
+                            <p>Spend time with herding families and experience traditional steppe life.</p>
+                            <p style="font-size: 0.9rem; color: #666; margin: 0.5rem 0;"><strong>Flexible 5–9 days</strong></p>
+                            <p style="font-size: 0.9rem; color: #666;">From <strong>$350/person</strong></p>
+                            <button class="book-trip-btn" onclick="event.stopPropagation(); openModal('tripBookingModal')" aria-label="Book Nomadic Heritage Journey">Book Trip</button>
+                        </div>
+                    </div>
+
+                    <div class="card trip-card" data-trip="wildlife">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200&h=800&fit=crop" alt="Mountain trail" loading="lazy">
+                        </div>
+                        <h3 class="card-title">Wildlife &amp; Mountain Trek</h3>
+                        <div class="card-content">
+                            <p>Track rare species and hike scenic ridgelines with expert guidance.</p>
+                            <p style="font-size: 0.9rem; color: #666; margin: 0.5rem 0;"><strong>Flexible 5–9 days</strong></p>
+                            <p style="font-size: 0.9rem; color: #666;">From <strong>$850/person</strong></p>
+                            <button class="book-trip-btn" onclick="event.stopPropagation(); openModal('tripBookingModal')" aria-label="Book Wildlife & Mountain Trek">Book Trip</button>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="trips.html" class="read-more-btn">View All Trips</a>
+            </div>
+        </section>
+
+        <!-- Tickets, Events, and Tips Preview Section -->
+        <section class="section preview-section" id="explore-more">
+            <div class="section-container">
+                <h2 class="section-title">Plan More of Your Journey</h2>
+                <p class="section-intro">
+                    Browse curated tickets, upcoming cultural events, and essential travel tips to make the most of Mongolia.
+                </p>
+
+                <div class="preview-grid">
+                    <a href="tickets.html" class="preview-card" aria-label="Explore tickets">
+                        <div class="preview-image">
+                            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200&h=800&fit=crop" alt="Tickets for Mongolian experiences" loading="lazy">
+                        </div>
+                        <div class="preview-content">
+                            <h3>Tickets</h3>
+                            <p>Reserve seats for museums, performances, and cultural showcases.</p>
+                            <span class="preview-button">Read More →</span>
+                        </div>
+                    </a>
+
+                    <a href="events.html" class="preview-card" aria-label="Discover events">
+                        <div class="preview-image">
+                            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&h=800&fit=crop" alt="Festival in Mongolia" loading="lazy">
+                        </div>
+                        <div class="preview-content">
+                            <h3>Events</h3>
+                            <p>Explore festivals, markets, and seasonal celebrations across Mongolia.</p>
+                            <span class="preview-button">Read More →</span>
+                        </div>
+                    </a>
+
+                    <a href="tips.html" class="preview-card" aria-label="Read travel tips">
+                        <div class="preview-image">
+                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop" alt="Mongolian nature landscape" loading="lazy">
+                        </div>
+                        <div class="preview-content">
+                            <h3>Tips</h3>
+                            <p>Learn about money, etiquette, weather, and cultural essentials.</p>
+                            <span class="preview-button">Read More →</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section class="section about-section" id="about">
+            <div class="section-container">
+                <h2 class="section-title">About Old City Mongolia</h2>
+                <div style="margin: 2rem 0;">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop" alt="Mongolian landscape - Old City Mongolia" loading="lazy" style="width: 100%; max-width: 600px; height: auto; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                </div>
+                <p class="section-intro">
+                    Nestled in the heart of the city, our guesthouse has been welcoming travelers since 2015. 
+                    We're dedicated to sharing the warmth of Mongolian hospitality while providing comfortable, authentic accommodations.
+                </p>
+                <a href="about.html" class="read-more-btn">Learn More</a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section contact-section" id="contact">
+            <div class="section-container">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-preview" style="margin: 2rem 0; padding: 2rem; background-color: var(--white); border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                        <div style="text-align: center;">
+                            <p style="color: #987654; font-weight: bold; margin-bottom: 0.5rem;">📍 Location</p>
+                            <p style="color: #666666; font-size: 0.95rem;">Sukhbaatar District, Ulaanbaatar</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <p style="color: #987654; font-weight: bold; margin-bottom: 0.5rem;">📧 Email</p>
+                            <p style="color: #666666; font-size: 0.95rem;"><a href="mailto:info@oldcitymongolia.com">info@oldcitymongolia.com</a></p>
+                        </div>
+                        <div style="text-align: center;">
+                            <p style="color: #987654; font-weight: bold; margin-bottom: 0.5rem;">📱 Phone</p>
+                            <p style="color: #666666; font-size: 0.95rem;">+976 (11) 555-0123</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="contact.html" class="read-more-btn">Contact Us</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Room Booking Modal -->
+    <div id="roomBookingModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 style="color: #987654; margin-bottom: 1.5rem;">Book Your Room</h2>
+            <form id="roomBookingForm" class="booking-form">
+                <div class="form-group">
+                    <label for="roomGuestName">Guest Name *</label>
+                    <input type="text" id="roomGuestName" name="roomGuestName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="roomGuestEmail">Email Address *</label>
+                    <input type="email" id="roomGuestEmail" name="roomGuestEmail" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="roomGuestPhone">Phone Number *</label>
+                    <input type="tel" id="roomGuestPhone" name="roomGuestPhone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="roomType">Room Type *</label>
+                    <select id="roomType" name="roomType" required>
+                        <option value="">Select a room</option>
+                        <option value="male">Male Room - $25/night</option>
+                        <option value="female">Female Room - $25/night</option>
+                    </select>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label for="roomCheckIn">Check-in Date *</label>
+                        <input type="date" id="roomCheckIn" name="roomCheckIn" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="roomCheckOut">Check-out Date *</label>
+                        <input type="date" id="roomCheckOut" name="roomCheckOut" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="roomBeds">Number of Beds *</label>
+                    <select id="roomBeds" name="roomBeds" required>
+                        <option value="">Select beds</option>
+                        <option value="1">1 Bed</option>
+                        <option value="2">2 Beds</option>
+                        <option value="3">3 Beds</option>
+                        <option value="4">4 Beds</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Payment Method *</label>
+                    <div class="payment-options" role="radiogroup" aria-label="Select payment method">
+                        <label class="payment-option">
+                            <input type="radio" name="roomPaymentMethod" value="online" checked>
+                            <span>Pay Online (demo)</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="roomPaymentMethod" value="pay_in_person">
+                            <span>Pay in Person (pay on arrival)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div style="background-color: #fdf5e6; padding: 1rem; border-radius: 5px; margin: 1rem 0;">
+                    <p style="margin: 0.5rem 0;"><strong>Total Price: </strong><span id="roomPriceDisplay">$0</span></p>
+                    <p style="margin: 0.5rem 0; font-size: 0.9rem; color: #666;">Price includes accommodation and breakfast</p>
+                </div>
+
+                <button type="submit" class="submit-btn">Continue</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Trip Booking Modal -->
+    <div id="tripBookingModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 style="color: #987654; margin-bottom: 1.5rem;">Book Your Trip</h2>
+            <form id="tripBookingForm" class="booking-form">
+                <div class="form-group">
+                    <label for="tripGuestName">Guest Name *</label>
+                    <input type="text" id="tripGuestName" name="tripGuestName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tripGuestEmail">Email Address *</label>
+                    <input type="email" id="tripGuestEmail" name="tripGuestEmail" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tripGuestPhone">Phone Number *</label>
+                    <input type="tel" id="tripGuestPhone" name="tripGuestPhone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tripType">Trip Type *</label>
+                    <select id="tripType" name="tripType" required>
+                        <option value="">Select a trip</option>
+                        <option value="gobi">Gobi Desert Discovery - Flexible 5–9 days - $450</option>
+                        <option value="lakes">Northern Lakes Expedition - Flexible 5–9 days - $650</option>
+                        <option value="nomadic">Nomadic Heritage Journey - Flexible 5–9 days - $350</option>
+                        <option value="wildlife">Wildlife & Mountain Trek - Flexible 5–9 days - $850</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tripStartDate">Start Date *</label>
+                    <input type="date" id="tripStartDate" name="tripStartDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tripParticipants">Group Size *</label>
+                    <input type="number" id="tripParticipants" name="tripParticipants" min="1" value="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Payment Method *</label>
+                    <div class="payment-options" role="radiogroup" aria-label="Select payment method">
+                        <label class="payment-option">
+                            <input type="radio" name="tripPaymentMethod" value="online" checked>
+                            <span>Pay Online (demo)</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="tripPaymentMethod" value="pay_in_person">
+                            <span>Pay in Person (pay on arrival)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div style="background-color: #fdf5e6; padding: 1rem; border-radius: 5px; margin: 1rem 0;">
+                    <p style="margin: 0.5rem 0;"><strong>Total Price: </strong><span id="tripPriceDisplay">$0</span></p>
+                    <p style="margin: 0.5rem 0; font-size: 0.9rem; color: #666;">Price per person, includes guide, meals, and transport</p>
+                </div>
+
+                <button type="submit" class="submit-btn">Continue</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 style="color: #987654; margin-bottom: 1.5rem;">Payment Details</h2>
+            <form id="paymentForm" class="booking-form">
+                <div class="form-group">
+                    <label for="cardName">Cardholder Name *</label>
+                    <input type="text" id="cardName" name="cardName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cardNumber">Card Number *</label>
+                    <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label for="cardExpiry">Expiry Date *</label>
+                        <input type="text" id="cardExpiry" name="cardExpiry" placeholder="MM/YY" maxlength="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardCvv">CVV *</label>
+                        <input type="text" id="cardCvv" name="cardCvv" placeholder="123" maxlength="3" required>
+                    </div>
+                </div>
+
+                <p style="font-size: 0.85rem; color: #666; margin: 1rem 0;">
+                    This is a demo payment form. For demo purposes, use any valid-looking card number.
+                </p>
+
+                <button type="submit" class="submit-btn">Complete Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Booking Confirmation Modal -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content" style="text-align: center;">
+            <h2 style="color: #987654; margin-bottom: 1rem;">✓ Booking Confirmed!</h2>
+            <div style="background-color: #e8f5e9; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                <p style="font-size: 1.2rem; color: #27ae60; margin: 0.5rem 0;"><strong>Your reservation is confirmed</strong></p>
+                <p style="color: #666; margin: 1rem 0;">A confirmation email has been sent to your email address with booking details.</p>
+                <div style="text-align: left; background-color: white; padding: 1rem; border-radius: 5px; margin: 1rem 0;">
+                    <p style="margin: 0.5rem 0; color: #333;"><strong>Guest Name:</strong> <span id="confirmationGuestName"></span></p>
+                    <p id="confirmationDetails" style="margin: 0.5rem 0; color: #333;"></p>
+                    <p style="margin: 0.5rem 0; color: #333;"><strong>Total Amount:</strong> <span id="confirmationAmount">$0</span></p>
+                    <p style="margin: 0.5rem 0; color: #333;"><strong>Payment Method:</strong> <span id="confirmationPaymentMethod"></span></p>
+                    <p style="margin: 0.5rem 0; color: #333;"><strong>Payment Status:</strong> <span id="confirmationPaymentStatus"></span></p>
+                </div>
+                <p style="font-size: 0.85rem; color: #999; margin: 1rem 0;">
+                    Reference #: <strong id="confirmationRefNumber"></strong>
+                </p>
+            </div>
+            <button type="button" class="submit-btn" id="closeConfirmation" style="margin-top: 1rem;">Close</button>
+        </div>
+    </div>
+
+    <!-- Room Detail Modal -->
+    <div id="accommodationDetailModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div id="accommodationDetail"></div>
+        </div>
+    </div>
+
+    <!-- Trip Detail Modal -->
+    <div id="tripDetailModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div id="tripDetail"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Old City Mongolia. All rights reserved.</p>
+            <p>Created with care for travelers seeking authentic experiences.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

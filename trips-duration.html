@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Select your ideal trip duration at Old City Mongolia.">
+    <title>Choose Trip Duration - Old City Mongolia</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-hero {
+            height: 450px;
+            background: linear-gradient(135deg, rgba(152, 118, 84, 0.9), rgba(80, 50, 30, 0.9)), 
+                        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=450&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            padding: 40px 20px;
+        }
+
+        .page-hero h1 {
+            font-size: 3.2rem;
+            margin: 0;
+            font-weight: 700;
+            animation: slideDown 0.8s ease;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            margin-top: 12px;
+            opacity: 0.95;
+            animation: slideUp 0.8s ease 0.2s both;
+        }
+
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .duration-intro {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .duration-intro h2 {
+            color: #987654;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .duration-intro p {
+            color: #666;
+            font-size: 1.05rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .duration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .duration-card {
+            background: white;
+            border-radius: 14px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-top: 4px solid transparent;
+        }
+
+        .duration-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(152, 118, 84, 0.2);
+            border-top-color: #987654;
+        }
+
+        .duration-number {
+            font-size: 3.5rem;
+            color: #987654;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .duration-label {
+            font-size: 1.3rem;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .duration-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .duration-trips {
+            font-size: 0.9rem;
+            color: #987654;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        .trip-options-section {
+            background: linear-gradient(135deg, #fdf5e6, #f5e8d9);
+            padding: 60px;
+            border-radius: 14px;
+            margin-top: 60px;
+        }
+
+        .trip-options-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .trip-options-header h3 {
+            color: #987654;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .trip-options-header p {
+            color: #666;
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .trips-display {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .trip-option-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .trip-option-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(152, 118, 84, 0.15);
+        }
+
+        .trip-option-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #987654, #7a5d47);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .trip-option-content {
+            padding: 25px;
+        }
+
+        .trip-option-content h4 {
+            color: #333;
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .trip-option-content p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0 0 15px 0;
+        }
+
+        .view-details-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #987654, #7a5d47);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+        }
+
+        .view-details-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(152, 118, 84, 0.3);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .duration-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .trip-options-section {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="navbar-container">
+            <button class="hamburger-menu" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="accommodations.html" class="nav-link">Accommodations</a></li>
+                <li><a href="trips.html" class="nav-link active">Trips</a></li>
+                <li><a href="tickets.html" class="nav-link">Tickets</a></li>
+                <li><a href="events.html" class="nav-link">Events</a></li>
+                <li><a href="tips.html" class="nav-link">Tips</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-hero">
+        <div>
+            <h1>Choose Your Trip Duration</h1>
+            <p>Select the perfect length for your Mongolian adventure</p>
+        </div>
+    </div>
+
+    <main>
+        <div class="page-container">
+            <div class="duration-intro">
+                <h2>Adventure Awaits</h2>
+                <p>
+                    Whether you have a few days or want a week-long expedition, we have the perfect trip for you. 
+                    Select your ideal duration below to explore our carefully curated adventures across Mongolia's 
+                    most stunning landscapes and cultural experiences.
+                </p>
+            </div>
+
+            <div class="duration-grid">
+                <div class="duration-card" onclick="scrollToTrips(5)">
+                    <span class="duration-number">5</span>
+                    <div class="duration-label">Days</div>
+                    <div class="duration-description">Quick getaway perfect for time-limited travelers</div>
+                    <div class="duration-trips">See available trips →</div>
+                </div>
+
+                <div class="duration-card" onclick="scrollToTrips(6)">
+                    <span class="duration-number">6</span>
+                    <div class="duration-label">Days</div>
+                    <div class="duration-description">Balanced adventure with plenty of experiences</div>
+                    <div class="duration-trips">See available trips →</div>
+                </div>
+
+                <div class="duration-card" onclick="scrollToTrips(7)">
+                    <span class="duration-number">7</span>
+                    <div class="duration-label">Days</div>
+                    <div class="duration-description">Full week of immersive Mongolian exploration</div>
+                    <div class="duration-trips">See available trips →</div>
+                </div>
+
+                <div class="duration-card" onclick="scrollToTrips(8)">
+                    <span class="duration-number">8</span>
+                    <div class="duration-label">Days</div>
+                    <div class="duration-description">Extended journey for deep cultural connection</div>
+                    <div class="duration-trips">See available trips →</div>
+                </div>
+
+                <div class="duration-card" onclick="scrollToTrips(9)">
+                    <span class="duration-number">9</span>
+                    <div class="duration-label">Days</div>
+                    <div class="duration-description">Ultimate adventure exploring multiple regions</div>
+                    <div class="duration-trips">See available trips →</div>
+                </div>
+            </div>
+
+            <div class="trip-options-section" id="tripSection">
+                <div class="trip-options-header">
+                    <h3>Available Trips</h3>
+                    <p>Select a duration above to see our featured adventures, or browse all our trips below</p>
+                </div>
+
+                <div class="trips-display" id="tripsDisplay">
+                    <div class="trip-option-card">
+                        <div class="trip-option-image">🐪</div>
+                        <div class="trip-option-content">
+                            <h4>Gobi Desert Expedition</h4>
+                            <p>Journey through vast golden dunes, ancient canyons, and desert landscapes with camel trekking and desert camping.</p>
+                            <button class="view-details-btn" onclick="goToTripDetails('Gobi Desert Expedition')">View Details</button>
+                        </div>
+                    </div>
+
+                    <div class="trip-option-card">
+                        <div class="trip-option-image">🏔️</div>
+                        <div class="trip-option-content">
+                            <h4>Northern Lakes Adventure</h4>
+                            <p>Explore pristine alpine lakes, lush valleys, and mountain peaks while meeting nomadic communities.</p>
+                            <button class="view-details-btn" onclick="goToTripDetails('Northern Lakes Adventure')">View Details</button>
+                        </div>
+                    </div>
+
+                    <div class="trip-option-card">
+                        <div class="trip-option-image">👨‍👩‍👧</div>
+                        <div class="trip-option-content">
+                            <h4>Nomadic Life Experience</h4>
+                            <p>Stay with traditional herding families and immerse yourself in authentic nomadic culture and daily life.</p>
+                            <button class="view-details-btn" onclick="goToTripDetails('Nomadic Life Experience')">View Details</button>
+                        </div>
+                    </div>
+
+                    <div class="trip-option-card">
+                        <div class="trip-option-image">🦓</div>
+                        <div class="trip-option-content">
+                            <h4>Wildlife & Mountain Trek</h4>
+                            <p>Trek through Khustain Nuruu National Park in search of rare Takhi horses and diverse wildlife.</p>
+                            <button class="view-details-btn" onclick="goToTripDetails('Wildlife & Mountain Trek')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Old City Mongolia. All rights reserved.</p>
+            <p>Created with care for travelers seeking authentic experiences.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function scrollToTrips(duration) {
+            document.getElementById('tripSection').scrollIntoView({ behavior: 'smooth' });
+            // Could filter trips by duration here in the future
+        }
+
+        function goToTripDetails(tripName) {
+            // Navigate to trips.html with trip name
+            window.location.href = 'trips.html?trip=' + encodeURIComponent(tripName);
+        }
+    </script>
+</body>
+</html>

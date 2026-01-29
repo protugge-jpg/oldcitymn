@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Travel tips for Mongolia including money, culture, weather, and etiquette.">
+    <title>Travel Tips - Old City Mongolia</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-hero {
+            height: 380px;
+            background: linear-gradient(135deg, rgba(152, 118, 84, 0.9), rgba(80, 50, 30, 0.9)),
+                        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400&h=800&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .page-hero h1 {
+            font-size: 2.8rem;
+            margin: 0;
+        }
+
+        .page-hero p {
+            margin-top: 12px;
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-top: 2rem;
+        }
+
+        .tips-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .tips-card h3 {
+            margin-top: 0;
+            color: #987654;
+        }
+
+        .tips-card ul {
+            padding-left: 18px;
+            color: #666;
+        }
+
+        .tips-card li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="navbar-container">
+            <button class="hamburger-menu" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="accommodations.html" class="nav-link">Accommodations</a></li>
+                <li><a href="trips.html" class="nav-link">Trips</a></li>
+                <li><a href="tickets.html" class="nav-link">Tickets</a></li>
+                <li><a href="events.html" class="nav-link">Events</a></li>
+                <li><a href="tips.html" class="nav-link active">Tips</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="page-hero">
+        <div>
+            <h1>Travel Tips</h1>
+            <p>Helpful pointers for a smooth and respectful journey through Mongolia.</p>
+        </div>
+    </header>
+
+    <main class="page-container">
+        <h2 class="section-title">Essential Know-How</h2>
+        <p class="section-intro">
+            These tips are placeholders that can be expanded with local insights, updated pricing, and seasonal guidance.
+        </p>
+
+        <div class="tips-grid" aria-label="Travel tips">
+            <section class="tips-card">
+                <h3>Money &amp; Payments</h3>
+                <ul>
+                    <li>Carry small bills for local markets and taxis.</li>
+                    <li>ATMs are common in the city but limited in rural areas.</li>
+                    <li>Ask about card acceptance before arriving at attractions.</li>
+                </ul>
+            </section>
+
+            <section class="tips-card">
+                <h3>Culture &amp; Etiquette</h3>
+                <ul>
+                    <li>Accept tea or snacks with your right hand as a sign of respect.</li>
+                    <li>Ask permission before photographing people or sacred places.</li>
+                    <li>Learn a few Mongolian greetings for warm interactions.</li>
+                </ul>
+            </section>
+
+            <section class="tips-card">
+                <h3>Weather &amp; Packing</h3>
+                <ul>
+                    <li>Layer clothing for big temperature swings day to night.</li>
+                    <li>Pack wind protection for the steppe and desert regions.</li>
+                    <li>Bring sunscreen and sunglasses year-round.</li>
+                </ul>
+            </section>
+
+            <section class="tips-card">
+                <h3>Travel Etiquette</h3>
+                <ul>
+                    <li>Stay with your guide on open-range excursions.</li>
+                    <li>Respect herding families' privacy and property boundaries.</li>
+                    <li>Leave no trace when visiting nature sites.</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Old City Mongolia. All rights reserved.</p>
+            <p>Created with care for travelers seeking authentic experiences.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

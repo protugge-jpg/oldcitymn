@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Choose from four curated Mongolia trips with flexible duration details.">
+    <title>Trips - Old City Mongolia</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-hero {
+            height: 420px;
+            background: linear-gradient(135deg, rgba(152, 118, 84, 0.9), rgba(80, 50, 30, 0.9)),
+                        url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1400&h=800&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .page-hero p {
+            font-size: 1.1rem;
+            margin-top: 12px;
+            opacity: 0.95;
+        }
+
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px 90px;
+        }
+
+        .intro-panel {
+            background: white;
+            padding: 35px 40px;
+            border-radius: 16px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            margin-bottom: 50px;
+        }
+
+        .intro-panel h2 {
+            margin-top: 0;
+            color: #987654;
+            font-size: 2rem;
+        }
+
+        .intro-panel p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .trips-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 28px;
+        }
+
+        .trip-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            height: 100%;
+        }
+
+        .trip-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .trip-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 38px rgba(152, 118, 84, 0.2);
+        }
+
+        .trip-image {
+            position: relative;
+            height: 230px;
+            overflow: hidden;
+            background: #fdf5e6;
+        }
+
+        .trip-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .trip-card:hover .trip-image img {
+            transform: scale(1.05);
+        }
+
+        .trip-tag {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            background: rgba(152, 118, 84, 0.95);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .trip-body {
+            padding: 28px 28px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            flex: 1;
+        }
+
+        .trip-body h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .trip-highlights {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .highlight-card {
+            background: #fdf5e6;
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .highlight-card span {
+            display: block;
+            font-weight: 600;
+            color: #987654;
+        }
+
+        .highlight-card small {
+            display: block;
+            color: #777;
+            font-size: 0.8rem;
+        }
+
+        .trip-body p {
+            color: #666;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .trip-footer {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            font-weight: 600;
+            color: #987654;
+        }
+
+        .trip-footer span {
+            font-size: 0.95rem;
+        }
+
+        .trip-footer .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        @media (max-width: 900px) {
+            .trips-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .trip-highlights {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .intro-panel {
+                padding: 28px;
+            }
+
+            .trip-highlights {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="navbar-container">
+            <button class="hamburger-menu" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="accommodations.html" class="nav-link">Accommodations</a></li>
+                <li><a href="trips.html" class="nav-link active">Trips</a></li>
+                <li><a href="tickets.html" class="nav-link">Tickets</a></li>
+                <li><a href="events.html" class="nav-link">Events</a></li>
+                <li><a href="tips.html" class="nav-link">Tips</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="page-hero">
+        <div>
+            <h1>Choose Your Mongolia Journey</h1>
+            <p>Select a trip to explore flexible durations and detailed itineraries.</p>
+        </div>
+    </header>
+
+    <main class="page-container">
+        <section class="intro-panel">
+            <h2>Four Signature Trips</h2>
+            <p>
+                Each experience is curated for different travel styles. Click a trip to choose your preferred duration,
+                then view day-by-day itineraries and included activities.
+            </p>
+        </section>
+
+        <section class="trips-grid" aria-label="Trip options">
+            <a class="trip-card-link" href="trip-1.html" aria-label="View Gobi Desert Discovery">
+                <article class="trip-card">
+                    <div class="trip-image">
+                        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&h=800&fit=crop" alt="Gobi Desert dunes">
+                        <span class="trip-tag">Desert Adventure</span>
+                    </div>
+                    <div class="trip-body">
+                        <h3>Gobi Desert Discovery</h3>
+                        <div class="trip-highlights">
+                            <div class="highlight-card">
+                                <span>🐪</span>
+                                <small>Camel Trek</small>
+                            </div>
+                            <div class="highlight-card">
+                                <span>🏜️</span>
+                                <small>Golden Dunes</small>
+                            </div>
+                            <div class="highlight-card">
+                                <span>🌌</span>
+                                <small>Night Skies</small>
+                            </div>
+                        </div>
+                        <p>Traverse iconic desert landscapes with flexible pacing and immersive camps.</p>
+                        <div class="trip-footer">
+                            <span>Flexible 5–9 days</span>
+                            <span class="cta">View trip →</span>
+                        </div>
+                    </div>
+                </article>
+            </a>
+
+            <a class="trip-card-link" href="trip-2.html" aria-label="View Northern Lakes Expedition">
+                <article class="trip-card">
+                    <div class="trip-image">
+                        <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1200&h=800&fit=crop" alt="Northern lakes and forest">
+                        <span class="trip-tag">Lakes & Forests</span>
+                    </div>
+                    <div class="trip-body">
+                        <h3>Northern Lakes Expedition</h3>
+                        <div class="trip-highlights">
+                            <div class="highlight-card">
+                                <span>🏔️</span>
+                                <small>Trekking</small>
+                            </div>
+                            <div class="highlight-card">
+                                <span>🛶</span>
+                                <small>Kayaking</small>
+                            </div>
+                            <div class="highlight-card">
+                                <span>🌲</span>
+                                <small>Taiga</small>
+                            </div>
+                        </div>
+                        <p>Discover pristine lakes, cool forests, and cultural encounters in the north.</p>
+                        <div class="trip-footer">
+                            <span>Flexible 5–9 days</span>
+                            <span class="cta">View trip →</span>
+                        </div>
+                    </div>
+                </article>
+            </a>
+
+            <a class="trip-card-link" href="trip-3.html" aria-label="View Nomadic Heritage Journey">
+                <article class="trip-card">
+                    <div class="trip-image">
+                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&h=800&fit=crop" alt="Mongolian steppe landscape">
+                        <span class="trip-tag">Cultural Immersion</span>
+                    </div>
+                    <div class="trip-body">
+                        <h3>Nomadic Heritage Journey</h3>
+                        <div class="trip-highlights">
+                            <div class="highlight-card">
+                                <span>🏡</span>
+                                <small>Homestays</small>
+                            </div>
+                            <div class="highlight-card">
+                                <span>🐎</span>
+                                <small>Horse Riding</small>
+                            </div>
+                            <div class="highlight-card">
+                                <span>🧶</span>
+                                <small>Crafts</small>
+                            </div>
+                        </div>
+                        <p>Spend time with herding families and experience traditional steppe life.</p>
+                        <div class="trip-footer">
+                            <span>Flexible 5–9 days</span>
+                            <span class="cta">View trip →</span>
+                        </div>
+                    </div>
+                </article>
+            </a>
+
+            <a class="trip-card-link" href="trip-4.html" aria-label="View Wildlife & Mountain Trek">
+                <article class="trip-card">
+                    <div class="trip-image">
+                        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200&h=800&fit=crop" alt="Mountain trail">
+                        <span class="trip-tag">Wildlife Trek</span>
+                    </div>
+                    <div class="trip-body">
+                        <h3>Wildlife & Mountain Trek</h3>
+                        <div class="trip-highlights">
+                            <div class="highlight-card">
+                                <span>🦌</span>
+                                <small>Wildlife</small>
+                            </div>
+                            <div class="highlight-card">
+                                <span>🥾</span>
+                                <small>Ridge Hikes</small>
+                            </div>
+                            <div class="highlight-card">
+                                <span>📷</span>
+                                <small>Photography</small>
+                            </div>
+                        </div>
+                        <p>Track rare species and hike scenic ridgelines with expert guidance.</p>
+                        <div class="trip-footer">
+                            <span>Flexible 5–9 days</span>
+                            <span class="cta">View trip →</span>
+                        </div>
+                    </div>
+                </article>
+            </a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Old City Mongolia. All rights reserved.</p>
+            <p>Created with care for travelers seeking authentic experiences.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

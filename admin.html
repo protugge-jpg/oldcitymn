@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Old City Mongolia</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .admin-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .admin-header h1 {
+            color: #333;
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .back-btn {
+            background: #987654;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #7a5d47;
+            transform: translateY(-2px);
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .nav-tabs button {
+            padding: 12px 20px;
+            border: none;
+            background: white;
+            color: #666;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .nav-tabs button.active {
+            background: #987654;
+            color: white;
+        }
+
+        .nav-tabs button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-left: 4px solid #987654;
+        }
+
+        .stat-box h3 {
+            color: #666;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin: 0 0 10px 0;
+        }
+
+        .stat-box .value {
+            color: #987654;
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .content-box {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .content-box h2 {
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 15px;
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filters input,
+        .filters select {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            background: #fafafa;
+        }
+
+        .filters input:focus,
+        .filters select:focus {
+            outline: none;
+            border-color: #987654;
+            background: white;
+        }
+
+        .export-btn {
+            padding: 10px 20px;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-left: auto;
+            transition: all 0.3s;
+        }
+
+        .export-btn:hover {
+            background: #059669;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th {
+            background: #f5f5f5;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #e0e0e0;
+            font-size: 0.85rem;
+        }
+
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #666;
+        }
+
+        table tr:hover {
+            background: #fafafa;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status.confirmed {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status.pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status.cancelled {
+            background: #fee2e2;
+            color: #7f1d1d;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-edit {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background: #2563eb;
+        }
+
+        .btn-delete {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #dc2626;
+        }
+
+        .info-box {
+            background: #f9f9f9;
+            border-left: 4px solid #987654;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 25px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .info-box strong {
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .admin-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .filters {
+                flex-direction: column;
+            }
+
+            .filters input,
+            .filters select {
+                width: 100%;
+            }
+
+            .export-btn {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .action-btns {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            table th,
+            table td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-wrapper">
+        <!-- Header -->
+        <div class="admin-header">
+            <h1>📊 Admin Dashboard</h1>
+            <a href="index.html" class="back-btn">← Back to Website</a>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="active" onclick="showSection('bookings')">📅 Manage Bookings</button>
+            <button onclick="showSection('stats')">📈 Statistics</button>
+        </div>
+
+        <!-- BOOKINGS SECTION -->
+        <div id="bookings" class="section active">
+            <!-- Quick Stats -->
+            <div class="stats-container">
+                <div class="stat-box">
+                    <h3>Total Bookings</h3>
+                    <p class="value" id="totalVal">5</p>
+                </div>
+                <div class="stat-box">
+                    <h3>✓ Confirmed</h3>
+                    <p class="value" id="confirmedVal">3</p>
+                </div>
+                <div class="stat-box">
+                    <h3>⏳ Pending</h3>
+                    <p class="value" id="pendingVal">2</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Total Revenue</h3>
+                    <p class="value" id="revenueVal">$3,750</p>
+                </div>
+            </div>
+
+            <!-- Bookings Table -->
+            <div class="content-box">
+                <h2>All Bookings</h2>
+                
+                <div class="filters">
+                    <input type="text" id="searchName" placeholder="Search by guest name..." onkeyup="filterBookings()">
+                    <select id="typeFilter" onchange="filterBookings()">
+                        <option value="">All Types</option>
+                        <option value="accommodation">Accommodation</option>
+                        <option value="trip">Trip</option>
+                    </select>
+                    <select id="statusFilter" onchange="filterBookings()">
+                        <option value="">All Status</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                    <button class="export-btn" onclick="downloadCSV()">📥 Export to CSV</button>
+                </div>
+
+                <table id="bookingsTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Guest Name</th>
+                            <th>Type</th>
+                            <th>Booking Item</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Data loads here -->
+                    </tbody>
+                </table>
+
+                <div class="info-box">
+                    <strong>How to use:</strong> Click "Edit" to change booking status (confirmed/pending). Click "Delete" to remove a booking. Use the filters to search by guest name, booking type, or status. Click "Export to CSV" to download all bookings.
+                </div>
+            </div>
+        </div>
+
+        <!-- STATISTICS SECTION -->
+        <div id="stats" class="section">
+            <div class="stats-container">
+                <div class="stat-box">
+                    <h3>Average Occupancy</h3>
+                    <p class="value">78%</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Guest Rating</h3>
+                    <p class="value">4.8/5</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Year Revenue</h3>
+                    <p class="value">$45.6K</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Total Guests</h3>
+                    <p class="value">120+</p>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h2>Booking Summary</h2>
+                <div class="info-box">
+                    <strong>Current Status:</strong><br>
+                    • You have <strong>5 total bookings</strong> in the system<br>
+                    • <strong>3 are confirmed</strong> and ready to go<br>
+                    • <strong>2 are pending approval</strong> - you should review and confirm these<br>
+                    • Total value of all bookings: <strong>$3,750</strong><br><br>
+                    <strong>What you can do:</strong> Go to the "Manage Bookings" tab above to view all bookings in detail. You can search by guest name, filter by type (accommodation or trip) or status (confirmed/pending), edit booking status, delete bookings, or export the data to a spreadsheet.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample booking data
+        const bookings = [
+            { id: 'BK001', name: 'John Smith', type: 'accommodation', item: 'Male Room - 3 nights', date: '2024-12-15', amount: 75, status: 'confirmed' },
+            { id: 'BK002', name: 'Sarah Johnson', type: 'trip', item: 'Gobi Desert - 4 days', date: '2024-12-18', amount: 450, status: 'pending' },
+            { id: 'BK003', name: 'Michael Chen', type: 'accommodation', item: 'Female Room - 2 nights', date: '2024-12-20', amount: 50, status: 'confirmed' },
+            { id: 'BK004', name: 'Emma Wilson', type: 'trip', item: 'Wildlife Trek - 9 days', date: '2024-12-22', amount: 850, status: 'confirmed' },
+            { id: 'BK005', name: 'David Brown', type: 'accommodation', item: 'Male Room - 5 nights', date: '2024-12-25', amount: 125, status: 'pending' }
+        ];
+
+        // Load table
+        function loadTable() {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = bookings.map(b => `
+                <tr>
+                    <td>${b.id}</td>
+                    <td><strong>${b.name}</strong></td>
+                    <td>${b.type === 'accommodation' ? '🏨 Room' : '🏕️ Trip'}</td>
+                    <td>${b.item}</td>
+                    <td>${b.date}</td>
+                    <td>$${b.amount}</td>
+                    <td><span class="status ${b.status}">${b.status === 'confirmed' ? '✓ Confirmed' : '⏳ Pending'}</span></td>
+                    <td>
+                        <div class="action-btns">
+                            <button class="btn btn-edit" onclick="editStatus('${b.id}')">Edit</button>
+                            <button class="btn btn-delete" onclick="deleteBooking('${b.id}')">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+
+            // Update stats
+            document.getElementById('totalVal').textContent = bookings.length;
+            document.getElementById('confirmedVal').textContent = bookings.filter(b => b.status === 'confirmed').length;
+            document.getElementById('pendingVal').textContent = bookings.filter(b => b.status === 'pending').length;
+            document.getElementById('revenueVal').textContent = '$' + bookings.reduce((sum, b) => sum + b.amount, 0);
+        }
+
+        function filterBookings() {
+            const name = document.getElementById('searchName').value.toLowerCase();
+            const type = document.getElementById('typeFilter').value;
+            const status = document.getElementById('statusFilter').value;
+
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = bookings.filter(b =>
+                b.name.toLowerCase().includes(name) &&
+                (!type || b.type === type) &&
+                (!status || b.status === status)
+            ).map(b => `
+                <tr>
+                    <td>${b.id}</td>
+                    <td><strong>${b.name}</strong></td>
+                    <td>${b.type === 'accommodation' ? '🏨 Room' : '🏕️ Trip'}</td>
+                    <td>${b.item}</td>
+                    <td>${b.date}</td>
+                    <td>$${b.amount}</td>
+                    <td><span class="status ${b.status}">${b.status === 'confirmed' ? '✓ Confirmed' : '⏳ Pending'}</span></td>
+                    <td>
+                        <div class="action-btns">
+                            <button class="btn btn-edit" onclick="editStatus('${b.id}')">Edit</button>
+                            <button class="btn btn-delete" onclick="deleteBooking('${b.id}')">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function editStatus(id) {
+            const booking = bookings.find(b => b.id === id);
+            if (booking) {
+                const newStatus = booking.status === 'confirmed' ? 'pending' : 'confirmed';
+                booking.status = newStatus;
+                alert(`✓ Booking ${id} updated to: ${newStatus}`);
+                loadTable();
+            }
+        }
+
+        function deleteBooking(id) {
+            if (confirm('Delete this booking? This cannot be undone.')) {
+                const index = bookings.findIndex(b => b.id === id);
+                if (index > -1) {
+                    bookings.splice(index, 1);
+                    alert('✓ Booking deleted');
+                    loadTable();
+                }
+            }
+        }
+
+        function downloadCSV() {
+            let csv = 'ID,Guest Name,Type,Item,Date,Amount,Status\n';
+            bookings.forEach(b => {
+                csv += `${b.id},"${b.name}","${b.type}","${b.item}",${b.date},$${b.amount},${b.status}\n`;
+            });
+            const link = document.createElement('a');
+            link.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+            link.download = 'bookings.csv';
+            link.click();
+        }
+
+        function showSection(section) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(section).classList.add('active');
+
+            document.querySelectorAll('.nav-tabs button').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // Load on startup
+        loadTable();
+    </script>
+</body>
+</html>

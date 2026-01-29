@@ -1,0 +1,1028 @@
+/* ======================================
+   Old City Mongolia - Stylesheet
+   ====================================== */
+
+/* CSS Variables for easy customization */
+:root {
+    --primary-color: #987654;
+    --background-color: #fdf5e6;
+    --white: #ffffff;
+    --dark-text: #333333;
+    --light-text: #666666;
+    --hover-color: #7a5c42;
+    --transition: all 0.3s ease;
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--dark-text);
+    background-color: var(--background-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--hover-color);
+}
+
+/* ======================================
+   Navigation Bar
+   ====================================== */
+
+.navbar {
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: var(--dark-text);
+    font-weight: 500;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+    transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+    outline: none;
+}
+
+/* Hamburger Menu (Hidden by default) */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.hamburger-line {
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin: 5px 0;
+    transition: var(--transition);
+}
+
+/* Mobile Menu Active State */
+.nav-menu.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: var(--white);
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.hamburger-menu.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(10px, 10px);
+}
+
+.hamburger-menu.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* ======================================
+   Main Content & Sections
+   ====================================== */
+
+main {
+    min-height: calc(100vh - 200px);
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--hover-color) 100%),
+                url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=600&fit=crop') center/cover no-repeat;
+    background-attachment: fixed;
+    background-blend-mode: overlay;
+    color: var(--white);
+    padding: 180px 2rem;
+    text-align: center;
+    animation: fadeIn 0.8s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 750px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(152, 118, 84, 0.6);
+    pointer-events: none;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 3rem;
+    color: var(--white);
+    margin-bottom: 1rem;
+    animation: slideDown 0.8s ease 0.2s both;
+}
+
+.hero-tagline {
+    font-size: 1.3rem;
+    color: var(--background-color);
+    margin-bottom: 2rem;
+    animation: slideDown 0.8s ease 0.4s both;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background-color: var(--white);
+    color: var(--primary-color);
+    font-weight: bold;
+    border-radius: 5px;
+    transition: var(--transition);
+    animation: slideDown 0.8s ease 0.6s both;
+}
+
+.cta-button:hover {
+    background-color: var(--background-color);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Section Styles */
+.section {
+    padding: 80px 2rem;
+    animation: fadeIn 0.8s ease;
+}
+
+.section-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.section-intro {
+    font-size: 1.1rem;
+    color: var(--light-text);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+}
+
+/* Alternating Section Backgrounds */
+.accommodations-section {
+    background-color: var(--white);
+}
+
+.trips-section {
+    background-color: var(--background-color);
+}
+
+.about-section {
+    background-color: var(--white);
+}
+
+.contact-section {
+    background-color: var(--background-color);
+}
+
+/* Read More Button */
+.read-more-btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 5px;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.read-more-btn:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(152, 118, 84, 0.3);
+}
+
+/* ======================================
+   Footer
+   ====================================== */
+
+.footer {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 2rem;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.footer-content p {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+}
+
+.footer-content p:first-child {
+    font-weight: bold;
+}
+
+/* ======================================
+   Animations
+   ====================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ======================================
+   Individual Page Styles
+   ====================================== */
+
+/* Page Container */
+.page-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 2rem 40px;
+    animation: fadeIn 0.8s ease;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.page-subtitle {
+    font-size: 1.1rem;
+    color: var(--light-text);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.content-block {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background-color: var(--white);
+    border-left: 5px solid var(--primary-color);
+    border-radius: 5px;
+    animation: slideInLeft 0.6s ease;
+}
+
+.content-block h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.content-block p {
+    color: var(--light-text);
+    line-height: 1.8;
+}
+
+/* Cards Grid (for items, rooms, trips) */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.card {
+    background-color: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    animation: fadeIn 0.6s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px rgba(152, 118, 84, 0.2);
+}
+
+.card-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background-color: #f0f0f0;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+.card-title {
+    font-size: 1.3rem;
+    padding: 1.5rem 1.5rem 0;
+    color: var(--primary-color);
+}
+
+.card-content {
+    padding: 0 1.5rem 1.5rem;
+    color: var(--light-text);
+}
+
+/* Preview Cards (Tickets, Events, Tips) */
+.preview-section {
+    background-color: var(--white);
+}
+
+.preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.preview-card {
+    background-color: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.preview-card:hover,
+.preview-card:focus-visible {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 30px rgba(152, 118, 84, 0.25);
+}
+
+.preview-image {
+    height: 200px;
+    overflow: hidden;
+    background-color: #f0e8d8;
+}
+
+.preview-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.preview-card:hover .preview-image img,
+.preview-card:focus-visible .preview-image img {
+    transform: scale(1.05);
+}
+
+.preview-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.preview-content h3 {
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.preview-button {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-top: auto;
+}
+
+/* Booking Button Styles */
+.book-btn,
+.book-trip-btn {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    margin-top: 1rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.book-btn:hover,
+.book-trip-btn:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(152, 118, 84, 0.3);
+}
+
+/* Contact Form */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(152, 118, 84, 0.2);
+}
+
+.submit-btn {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(152, 118, 84, 0.3);
+}
+
+/* Booking Form Styles */
+.booking-form {
+    max-width: 100%;
+}
+
+.booking-form .form-group {
+    margin-bottom: 1.2rem;
+}
+
+/* Payment Options */
+.payment-options {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e4d8c7;
+    border-radius: 6px;
+    background: #fdf5e6;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.payment-option:hover {
+    border-color: var(--primary-color);
+    background: #fffaf2;
+}
+
+.payment-option input {
+    accent-color: var(--primary-color);
+}
+
+/* ======================================
+   Modal Styles
+   ====================================== */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    animation: fadeIn 0.3s ease;
+    overflow-y: auto;
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--white);
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideDown 0.3s ease;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    cursor: pointer;
+    background: var(--white);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: var(--transition);
+    z-index: 10;
+}
+
+.modal-close:hover {
+    color: var(--hover-color);
+    transform: rotate(90deg);
+}
+
+.modal-content > h2,
+.modal-content > form {
+    padding: 1.5rem 2rem;
+}
+
+.modal-content > h2:first-child {
+    padding-top: 2rem;
+}
+
+.booking-form {
+    padding: 0 2rem 2rem 2rem !important;
+}
+
+/* ======================================
+   Responsive Form Styling
+   ====================================== */
+
+/* ======================================
+   Responsive Design (Mobile First)
+   ====================================== */
+
+@media (max-width: 768px) {
+    /* Navbar adjustments */
+    .hamburger-menu {
+        display: flex;
+    }
+
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-menu.active li {
+        padding: 1rem 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .nav-menu.active .nav-link {
+        border-bottom: none;
+    }
+
+    /* Hero section */
+    .hero {
+        padding: 60px 2rem;
+        min-height: 400px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-tagline {
+        font-size: 1rem;
+    }
+
+    /* Sections */
+    .section {
+        padding: 60px 2rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    /* Content blocks */
+    .content-block {
+        padding: 1.5rem;
+    }
+
+    /* Modal adjustments */
+    .modal-content {
+        width: 95%;
+        max-height: 85vh;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Additional mobile tweaks */
+    .navbar-container {
+        padding: 1rem;
+    }
+
+    .navbar-logo a {
+        font-size: 1.2rem;
+    }
+
+    .hero-title {
+        font-size: 1.5rem;
+    }
+
+    .hero {
+        padding: 40px 1rem;
+    }
+
+    .section {
+        padding: 40px 1rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .page-container {
+        padding: 40px 1rem 30px;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* ======================================
+   Accessibility
+   ====================================== */
+
+/* Focus visible for keyboard navigation */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Skip to main content link (hidden but accessible) */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 8px;
+    text-decoration: none;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Better visibility for text selection */
+::selection {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    animation: slideInDown 0.3s ease;
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-content h2 {
+    color: #987654;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
+
+.modal-content input,
+.modal-content textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus {
+    outline: none;
+    border-color: #987654;
+    box-shadow: 0 0 0 3px rgba(152, 118, 84, 0.1);
+}
+
+.modal-content .btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #987654, #7a5d47);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-content .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(152, 118, 84, 0.3);
+}
+
+.modal-content a {
+    color: #987654;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.modal-content a:hover {
+    text-decoration: underline;
+}
+
+.close {
+    color: #999;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 20px;
+}
+
+.close:hover,
+.close:focus {
+    color: #987654;
+}
+
+/* Past Bookings Modal */
+.past-bookings {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.booking-item {
+    background: #f5ede0;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #987654;
+}
+
+.booking-item strong {
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.booking-item p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* Room/Trip Detail Modal */
+.detail-header {
+    margin-bottom: 20px;
+}
+
+.detail-header h3 {
+    color: #987654;
+    margin: 0 0 10px 0;
+    font-size: 1.8rem;
+}
+
+.detail-price {
+    font-size: 1.4rem;
+    color: #987654;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.detail-description {
+    color: #666;
+    line-height: 1.8;
+    margin: 15px 0;
+}
+
+.detail-features {
+    background: #f5ede0;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.detail-features h4 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.detail-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.detail-features li {
+    padding: 5px 0;
+    color: #666;
+}
+
+.detail-features li:before {
+    content: "✓ ";
+    color: #987654;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.detail-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #987654, #7a5d47);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+}
+
+.detail-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(152, 118, 84, 0.3);
+}

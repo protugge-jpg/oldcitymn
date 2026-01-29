@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about Old City Mongolia's story, mission, and commitment to authentic travel experiences.">
+    <title>About Us - Old City Mongolia</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-hero {
+            height: 450px;
+            background: linear-gradient(135deg, rgba(152, 118, 84, 0.9), rgba(80, 50, 30, 0.9)), 
+                        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=450&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            padding: 40px 20px;
+        }
+
+        .page-hero h1 {
+            font-size: 3.2rem;
+            margin: 0;
+            font-weight: 700;
+            animation: slideDown 0.8s ease;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            margin-top: 12px;
+            opacity: 0.95;
+            animation: slideUp 0.8s ease 0.2s both;
+        }
+
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #987654;
+            margin-bottom: 0;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #987654, transparent);
+        }
+
+        .story-section {
+            background: white;
+            padding: 50px;
+            border-radius: 14px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            margin-bottom: 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .story-text h3 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .story-text p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .story-image {
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(135deg, #987654, #7a5d47);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .value-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-top: 4px solid #987654;
+        }
+
+        .value-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px rgba(152, 118, 84, 0.2);
+        }
+
+        .value-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .value-card h4 {
+            font-size: 1.4rem;
+            color: #333;
+            margin: 15px 0;
+        }
+
+        .value-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .team-section {
+            background: linear-gradient(135deg, #fdf5e6, #f5e8d9);
+            padding: 50px;
+            border-radius: 14px;
+            margin-bottom: 60px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .team-member:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(152, 118, 84, 0.15);
+        }
+
+        .team-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #987654, #7a5d47);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .team-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .team-member h4 {
+            font-size: 1.3rem;
+            color: #333;
+            margin: 0 0 5px 0;
+        }
+
+        .team-role {
+            color: #987654;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .team-bio {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .stats-section {
+            background: white;
+            padding: 50px;
+            border-radius: 14px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            margin-bottom: 60px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: #987654;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #333;
+            margin: 0;
+        }
+
+        .commitment-box {
+            background: linear-gradient(135deg, #fdf5e6, #f5ede0);
+            padding: 40px;
+            border-radius: 12px;
+            border-left: 5px solid #987654;
+            margin-bottom: 60px;
+        }
+
+        .commitment-box h3 {
+            color: #333;
+            margin-top: 0;
+            font-size: 1.6rem;
+        }
+
+        .commitment-box p {
+            color: #666;
+            line-height: 1.8;
+            margin: 15px 0;
+        }
+
+        .cta-section {
+            background: white;
+            padding: 50px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            margin-top: 60px;
+        }
+
+        .cta-section h2 {
+            color: #987654;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            color: #666;
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #987654, #7a5d47);
+            color: white;
+            padding: 16px 45px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(152, 118, 84, 0.3);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .story-section {
+                grid-template-columns: 1fr;
+                padding: 30px;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="navbar-container">
+            <button class="hamburger-menu" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="accommodations.html" class="nav-link">Accommodations</a></li>
+                <li><a href="trips.html" class="nav-link">Trips</a></li>
+                <li><a href="tickets.html" class="nav-link">Tickets</a></li>
+                <li><a href="events.html" class="nav-link">Events</a></li>
+                <li><a href="tips.html" class="nav-link">Tips</a></li>
+                <li><a href="about.html" class="nav-link active">About Us</a></li>
+                <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-hero">
+        <div>
+            <h1>About Old City Mongolia</h1>
+            <p>Connecting travelers with authentic Mongolian experiences since 2010</p>
+        </div>
+    </div>
+
+    <main>
+        <div class="page-container">
+            <div class="story-section">
+                <div class="story-text">
+                    <h3>Our Story</h3>
+                    <p>
+                        Old City Mongolia was born from a passion for sharing the beauty and culture of our homeland with the world. 
+                        Founded in 2010, we started as a small family guesthouse in Ulaanbaatar's historic district.
+                    </p>
+                    <p>
+                        What began as a dream to offer travelers authentic experiences has grown into a trusted name in Mongolian tourism. 
+                        Our guesthouse has welcomed thousands of guests from every continent, each leaving with unforgettable memories and 
+                        deeper appreciation for Mongolian culture.
+                    </p>
+                    <p>
+                        Today, we combine traditional hospitality with modern comfort, carefully curating experiences that connect our guests 
+                        with the heart and soul of Mongolia.
+                    </p>
+                </div>
+                <div class="story-image">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=350&fit=crop" alt="Mongolia landscape">
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2>Our Core Values</h2>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <span class="value-icon">🤝</span>
+                    <h4>Authenticity</h4>
+                    <p>We provide genuine connections with Mongolian culture, people, and landscapes — not just tourist attractions.</p>
+                </div>
+
+                <div class="value-card">
+                    <span class="value-icon">♻️</span>
+                    <h4>Sustainability</h4>
+                    <p>We respect and protect Mongolia's pristine environment for future generations while supporting local communities.</p>
+                </div>
+
+                <div class="value-card">
+                    <span class="value-icon">⭐</span>
+                    <h4>Excellence</h4>
+                    <p>We maintain the highest standards of service quality, safety, and guest satisfaction in everything we do.</p>
+                </div>
+
+                <div class="value-card">
+                    <span class="value-icon">❤️</span>
+                    <h4>Hospitality</h4>
+                    <p>Warm, genuine hospitality is at the heart of everything — treating guests as friends, not customers.</p>
+                </div>
+
+                <div class="value-card">
+                    <span class="value-icon">🌍</span>
+                    <h4>Community</h4>
+                    <p>We actively support local artisans, guides, and communities through fair wages and partnership opportunities.</p>
+                </div>
+
+                <div class="value-card">
+                    <span class="value-icon">🎓</span>
+                    <h4>Education</h4>
+                    <p>We empower travelers and staff through cultural exchange and knowledge sharing about Mongolia's rich heritage.</p>
+                </div>
+            </div>
+
+            <div class="stats-section">
+                <div class="section-header">
+                    <h2>By The Numbers</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">14+</div>
+                        <p class="stat-label">Years of Experience</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5,000+</div>
+                        <p class="stat-label">Happy Guests</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50+</div>
+                        <p class="stat-label">Countries Represented</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">30+</div>
+                        <p class="stat-label">Expert Staff Members</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-section">
+                <div class="section-header">
+                    <h2>Meet Our Team</h2>
+                </div>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="team-image">👨‍💼</div>
+                        <div class="team-info">
+                            <h4>Bataar</h4>
+                            <p class="team-role">Founder & Owner</p>
+                            <p class="team-bio">With over 20 years in hospitality, Bataar founded Old City Mongolia to share his passion for Mongolian heritage and culture with travelers seeking authentic experiences.</p>
+                        </div>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="team-image">👩‍💼</div>
+                        <div class="team-info">
+                            <h4>Nomina</h4>
+                            <p class="team-role">Operations Manager</p>
+                            <p class="team-bio">Nomina ensures every aspect of your stay exceeds expectations, from check-in to checkout. Her attention to detail makes our guesthouse run seamlessly.</p>
+                        </div>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="team-image">🧑‍🎓</div>
+                        <div class="team-info">
+                            <h4>Temüjin</h4>
+                            <p class="team-role">Tour Guide Director</p>
+                            <p class="team-bio">With 15 years of expedition experience across Mongolia's vast landscapes, Temüjin leads our most adventurous journeys with expertise and passion.</p>
+                        </div>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="team-image">👩‍🍳</div>
+                        <div class="team-info">
+                            <h4>Sukhara</h4>
+                            <p class="team-role">Head Chef</p>
+                            <p class="team-bio">Sukhara blends traditional Mongolian recipes with international cuisine, using locally-sourced ingredients to create unforgettable dining experiences.</p>
+                        </div>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="team-image">🌍</div>
+                        <div class="team-info">
+                            <h4>Munkhzul</h4>
+                            <p class="team-role">Cultural Liaison</p>
+                            <p class="team-bio">Munkhzul bridges the gap between guests and local communities, facilitating meaningful cultural exchanges and authentic interactions throughout Mongolia.</p>
+                        </div>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="team-image">🎯</div>
+                        <div class="team-info">
+                            <h4>Enkh</h4>
+                            <p class="team-role">Activities Coordinator</p>
+                            <p class="team-bio">Enkh designs and coordinates all activities and excursions, ensuring each guest finds the perfect adventure suited to their interests and fitness level.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="commitment-box" style="margin-top: 60px;">
+                <h3>Why Choose Old City Mongolia?</h3>
+                <p>
+                    We're not just a guesthouse—we're a gateway to authentic Mongolia. Our team is committed to creating transformative 
+                    travel experiences that respect the environment, support local communities, and leave lasting positive impacts.
+                </p>
+                <p>
+                    <strong>Personal Attention:</strong> Small group sizes and personalized service ensure you receive the attention and care 
+                    you deserve throughout your journey.
+                </p>
+                <p>
+                    <strong>Expert Knowledge:</strong> Our team members are born and raised in Mongolia with deep knowledge of local culture, 
+                    history, and hidden gems most travelers never discover.
+                </p>
+                <p>
+                    <strong>Sustainable Practice:</strong> We operate with environmental responsibility and community support at the core of 
+                    everything we do, ensuring tourism benefits everyone.
+                </p>
+            </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Old City Mongolia. All rights reserved.</p>
+            <p>Created with care for travelers seeking authentic experiences.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

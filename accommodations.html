@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore our comfortable and beautifully designed accommodations at Old City Mongolia.">
+    <title>Accommodations - Old City Mongolia</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-hero {
+            height: 450px;
+            background: linear-gradient(135deg, rgba(152, 118, 84, 0.9), rgba(80, 50, 30, 0.9)), 
+                        url('https://images.unsplash.com/photo-1631049307038-da5ec5d79645?w=1200&h=450&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            padding: 40px 20px;
+        }
+
+        .page-hero h1 {
+            font-size: 3.2rem;
+            margin: 0;
+            font-weight: 700;
+            animation: slideDown 0.8s ease;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            margin-top: 12px;
+            opacity: 0.95;
+            animation: slideUp 0.8s ease 0.2s both;
+        }
+
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .intro-section {
+            background: linear-gradient(135deg, #fdf5e6, #f0e8d8);
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .intro-section p {
+            color: #333;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin: 15px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #987654;
+            margin-bottom: 0;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #987654, transparent);
+        }
+
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .room-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .room-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px rgba(152, 118, 84, 0.2);
+        }
+
+        .room-image {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #987654, #7a5d47);
+        }
+
+        .room-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .room-card:hover .room-image img {
+            transform: scale(1.1) rotate(1deg);
+        }
+
+        .room-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(152, 118, 84, 0.95);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .room-content {
+            padding: 30px;
+        }
+
+        .room-content h3 {
+            font-size: 1.6rem;
+            color: #333;
+            margin: 0 0 10px 0;
+        }
+
+        .price-display {
+            color: #987654;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .room-desc {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .amenities {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+
+        .amenities li {
+            padding: 6px 0;
+            color: #555;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .amenities li::before {
+            content: '✓';
+            color: #987654;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+        .book-button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #987654, #7a5d47);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .book-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(152, 118, 84, 0.3);
+        }
+
+        .highlights-section {
+            background: linear-gradient(135deg, #fdf5e6, #f5e8d9);
+            padding: 50px;
+            border-radius: 14px;
+            margin: 60px 0;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+        }
+
+        .highlight-item {
+            text-align: center;
+        }
+
+        .highlight-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .highlight-item h4 {
+            font-size: 1.2rem;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .highlight-item p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .cta-block {
+            background: white;
+            padding: 50px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            margin-top: 60px;
+        }
+
+        .cta-block h2 {
+            color: #987654;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .cta-block p {
+            color: #666;
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #987654, #7a5d47);
+            color: white;
+            padding: 16px 45px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(152, 118, 84, 0.3);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .page-hero p {
+                font-size: 0.95rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .intro-section {
+                padding: 30px;
+            }
+
+            .highlights-section {
+                padding: 30px;
+            }
+
+            .cta-block {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="navbar-container">
+            <button class="hamburger-menu" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="accommodations.html" class="nav-link active">Accommodations</a></li>
+                <li><a href="trips.html" class="nav-link">Trips</a></li>
+                <li><a href="tickets.html" class="nav-link">Tickets</a></li>
+                <li><a href="events.html" class="nav-link">Events</a></li>
+                <li><a href="tips.html" class="nav-link">Tips</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-hero">
+        <div>
+            <h1>Our Accommodations</h1>
+            <p>Where comfort meets tradition</p>
+        </div>
+    </div>
+
+    <main>
+        <div class="page-container">
+            <div class="intro-section">
+                <p>
+                    Experience the perfect harmony between authentic Mongolian hospitality and contemporary comfort. 
+                    Each room is thoughtfully designed to make your stay memorable and rejuvenating.
+                </p>
+            </div>
+
+            <div class="section-header">
+                <h2>Room Types</h2>
+            </div>
+
+            <div class="rooms-grid">
+                <div class="room-card" onclick="showAccommodationDetail('Male Dormitory', '$25/night', 'Welcoming shared accommodation with clean, comfortable beds and traditional Mongolian décor. Perfect for solo travelers looking to meet other guests and experience authentic hospitality.', ['Quality bedding & pillows', 'Free high-speed Wi-Fi', 'Shared kitchen & dining', 'Lounge area with TV', 'Shared shower & bathroom', '24/7 security', 'Laundry service', 'Travel advice & bookings'])" style="cursor: pointer;">
+                    <div class="room-image">
+                        <img src="https://images.unsplash.com/photo-1631049307038-da5ec5d79645?w=400&h=280&fit=crop" alt="Male Dorm">
+                        <span class="room-badge">8 Beds</span>
+                    </div>
+                    <div class="room-content">
+                        <h3>Male Dormitory</h3>
+                        <p class="price-display">$25/night</p>
+                        <p class="room-desc">Welcoming shared accommodation with clean, comfortable beds and traditional décor for solo travelers.</p>
+                        <ul class="amenities">
+                            <li>Quality bedding & pillows</li>
+                            <li>Free high-speed Wi-Fi</li>
+                            <li>Shared facilities</li>
+                            <li>24/7 security</li>
+                        </ul>
+                        <button class="book-button" onclick="event.stopPropagation(); openModal('roomBookingModal')">Book Now</button>
+                    </div>
+                </div>
+
+                <div class="room-card" onclick="showAccommodationDetail('Female Dormitory', '$25/night', 'Safe, women-only shared space designed for female travelers seeking comfort and community. Our all-female dorm provides a secure and welcoming environment with excellent amenities.', ['Quality bedding & pillows', 'Free high-speed Wi-Fi', 'Women-only facilities', '24/7 security & safety', 'Shared kitchen & dining', 'Lounge area with TV', 'Laundry service', 'Travel information & maps'])" style="cursor: pointer;">
+                    <div class="room-image">
+                        <img src="https://images.unsplash.com/photo-1631049307038-da5ec5d79645?w=400&h=280&fit=crop" alt="Female Dorm">
+                        <span class="room-badge">8 Beds</span>
+                    </div>
+                    <div class="room-content">
+                        <h3>Female Dormitory</h3>
+                        <p class="price-display">$25/night</p>
+                        <p class="room-desc">Safe, women-only shared space designed for female travelers seeking comfort and community.</p>
+                        <ul class="amenities">
+                            <li>Quality bedding & pillows</li>
+                            <li>Free high-speed Wi-Fi</li>
+                            <li>Women-only facilities</li>
+                            <li>24/7 security & safety</li>
+                        </ul>
+                        <button class="book-button" onclick="event.stopPropagation(); openModal('roomBookingModal')">Book Now</button>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="highlights-section">
+                <div class="section-header" style="margin-bottom: 40px;">
+                    <h2>Why Choose Us?</h2>
+                </div>
+                <div class="highlights-grid">
+                    <div class="highlight-item">
+                        <div class="highlight-icon">🌍</div>
+                        <h4>Prime Location</h4>
+                        <p>Heart of Ulaanbaatar, steps away from museums, markets, and restaurants.</p>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">👥</div>
+                        <h4>Friendly Team</h4>
+                        <p>Multilingual staff available 24/7 to assist with tours and special requests.</p>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">🍽️</div>
+                        <h4>Great Breakfast</h4>
+                        <p>Authentic Mongolian or international breakfast included with your stay.</p>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">🎯</div>
+                        <h4>Tour Planning</h4>
+                        <p>We arrange everything from desert expeditions to cultural experiences.</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Old City Mongolia. All rights reserved.</p>
+            <p>Created with care for travelers seeking authentic experiences.</p>
+        </div>
+    </footer>
+
+    <div id="roomBookingModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 style="color: #987654; margin-bottom: 1.5rem;">Book Your Room</h2>
+            <form id="roomBookingForm" class="booking-form">
+                <div class="form-group">
+                    <label for="roomGuestName">Guest Name *</label>
+                    <input type="text" id="roomGuestName" required>
+                </div>
+                <div class="form-group">
+                    <label for="roomGuestEmail">Email Address *</label>
+                    <input type="email" id="roomGuestEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="roomGuestPhone">Phone Number *</label>
+                    <input type="tel" id="roomGuestPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="roomType">Room Type *</label>
+                    <select id="roomType" required>
+                        <option value="">Select a room</option>
+                        <option value="male">Male Room - $25/night</option>
+                        <option value="female">Female Room - $25/night</option>
+                    </select>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label for="roomCheckIn">Check-in Date *</label>
+                        <input type="date" id="roomCheckIn" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="roomCheckOut">Check-out Date *</label>
+                        <input type="date" id="roomCheckOut" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="roomBeds">Number of Beds *</label>
+                    <select id="roomBeds" required>
+                        <option value="">Select beds</option>
+                        <option value="1">1 Bed</option>
+                        <option value="2">2 Beds</option>
+                        <option value="3">3 Beds</option>
+                        <option value="4">4 Beds</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Payment Method *</label>
+                    <div class="payment-options" role="radiogroup" aria-label="Select payment method">
+                        <label class="payment-option">
+                            <input type="radio" name="roomPaymentMethod" value="online" checked>
+                            <span>Pay Online (demo)</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="roomPaymentMethod" value="pay_in_person">
+                            <span>Pay in Person (pay on arrival)</span>
+                        </label>
+                    </div>
+                </div>
+                <div style="background-color: #fdf5e6; padding: 1rem; border-radius: 5px; margin: 1rem 0;">
+                    <p style="margin: 0;"><strong>Total Price: </strong><span id="roomPriceDisplay">$0</span></p>
+                </div>
+                <button type="submit" class="submit-btn">Continue</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 style="color: #987654; margin-bottom: 1.5rem;">Payment Details</h2>
+            <form id="paymentForm" class="booking-form">
+                <div class="form-group">
+                    <label for="cardName">Cardholder Name *</label>
+                    <input type="text" id="cardName" name="cardName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cardNumber">Card Number *</label>
+                    <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label for="cardExpiry">Expiry Date *</label>
+                        <input type="text" id="cardExpiry" name="cardExpiry" placeholder="MM/YY" maxlength="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardCvv">CVV *</label>
+                        <input type="text" id="cardCvv" name="cardCvv" placeholder="123" maxlength="3" required>
+                    </div>
+                </div>
+
+                <p style="font-size: 0.85rem; color: #666; margin: 1rem 0;">
+                    This is a demo payment form. For demo purposes, use any valid-looking card number.
+                </p>
+
+                <button type="submit" class="submit-btn">Complete Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Booking Confirmation Modal -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content" style="text-align: center;">
+            <h2 style="color: #987654; margin-bottom: 1rem;">✓ Booking Confirmed!</h2>
+            <div style="background-color: #e8f5e9; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                <p style="font-size: 1.2rem; color: #27ae60; margin: 0.5rem 0;"><strong>Your reservation is confirmed</strong></p>
+                <p style="color: #666; margin: 1rem 0;">A confirmation email has been sent to your email address with booking details.</p>
+                <div style="text-align: left; background-color: white; padding: 1rem; border-radius: 5px; margin: 1rem 0;">
+                    <p style="margin: 0.5rem 0; color: #333;"><strong>Guest Name:</strong> <span id="confirmationGuestName"></span></p>
+                    <p id="confirmationDetails" style="margin: 0.5rem 0; color: #333;"></p>
+                    <p style="margin: 0.5rem 0; color: #333;"><strong>Total Amount:</strong> <span id="confirmationAmount">$0</span></p>
+                    <p style="margin: 0.5rem 0; color: #333;"><strong>Payment Method:</strong> <span id="confirmationPaymentMethod"></span></p>
+                    <p style="margin: 0.5rem 0; color: #333;"><strong>Payment Status:</strong> <span id="confirmationPaymentStatus"></span></p>
+                </div>
+                <p style="font-size: 0.85rem; color: #999; margin: 1rem 0;">
+                    Reference #: <strong id="confirmationRefNumber"></strong>
+                </p>
+            </div>
+            <button type="button" class="submit-btn" id="closeConfirmation" style="margin-top: 1rem;">Close</button>
+        </div>
+    </div>
+
+    <!-- Accommodation Detail Modal -->
+    <div id="accommodationDetailModal" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <span class="close" onclick="closeModal('accommodationDetailModal')">&times;</span>
+            <div id="accommodationDetail"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get in touch with Old City Mongolia. We're here to help plan your perfect Mongolian adventure.">
+    <title>Contact Us - Old City Mongolia</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-hero {
+            height: 450px;
+            background: linear-gradient(135deg, rgba(152, 118, 84, 0.9), rgba(80, 50, 30, 0.9)), 
+                        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=450&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            padding: 40px 20px;
+        }
+
+        .page-hero h1 {
+            font-size: 3.2rem;
+            margin: 0;
+            font-weight: 700;
+            animation: slideDown 0.8s ease;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            margin-top: 12px;
+            opacity: 0.95;
+            animation: slideUp 0.8s ease 0.2s both;
+        }
+
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .contact-intro {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .contact-intro p {
+            color: #666;
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .contact-form-wrapper {
+            background: white;
+            padding: 40px;
+            border-radius: 14px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-form-wrapper h2 {
+            color: #987654;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #f0f0f0;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #987654;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(152, 118, 84, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #987654, #7a5d47);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(152, 118, 84, 0.3);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-left: 4px solid #987654;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(152, 118, 84, 0.15);
+        }
+
+        .info-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
+        .info-card h3 {
+            color: #333;
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .info-card p {
+            color: #666;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .info-card a {
+            color: #987654;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .info-card a:hover {
+            color: #7a5d47;
+        }
+
+        .hours-list {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .hours-list li {
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .response-time {
+            background: linear-gradient(135deg, #fdf5e6, #f5ede0);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .why-contact {
+            background: linear-gradient(135deg, #fdf5e6, #f5e8d9);
+            padding: 50px;
+            border-radius: 14px;
+            margin: 60px 0;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .why-item {
+            text-align: center;
+        }
+
+        .why-icon {
+            font-size: 2.8rem;
+            margin-bottom: 12px;
+        }
+
+        .why-item h4 {
+            color: #333;
+            margin: 0 0 8px 0;
+            font-size: 1.1rem;
+        }
+
+        .why-item p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .cta-section {
+            background: white;
+            padding: 50px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            margin-top: 60px;
+        }
+
+        .cta-section h2 {
+            color: #987654;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            color: #666;
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #987654, #7a5d47);
+            color: white;
+            padding: 16px 45px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0 10px;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(152, 118, 84, 0.3);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form-wrapper {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="navbar-container">
+            <button class="hamburger-menu" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="accommodations.html" class="nav-link">Accommodations</a></li>
+                <li><a href="trips.html" class="nav-link">Trips</a></li>
+                <li><a href="tickets.html" class="nav-link">Tickets</a></li>
+                <li><a href="events.html" class="nav-link">Events</a></li>
+                <li><a href="tips.html" class="nav-link">Tips</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li><a href="contact.html" class="nav-link active">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-hero">
+        <div>
+            <h1>Get In Touch</h1>
+            <p>We'd love to hear from you. Reach out with any questions or to plan your adventure.</p>
+        </div>
+    </div>
+
+    <main>
+        <div class="page-container">
+            <div class="contact-intro">
+                <p>
+                    Whether you have questions about our accommodations, want to book a trip, or simply want to learn more 
+                    about Mongolia, our friendly team is here to help. We typically respond to inquiries within 24 hours.
+                </p>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-form-wrapper">
+                    <h2>Send us a Message</h2>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="contactName">Full Name *</label>
+                            <input type="text" id="contactName" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactEmail">Email Address *</label>
+                            <input type="email" id="contactEmail" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactPhone">Phone Number</label>
+                            <input type="tel" id="contactPhone" name="phone">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactSubject">Subject *</label>
+                            <select id="contactSubject" name="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="booking">Booking Inquiry</option>
+                                <option value="rates">Rates & Availability</option>
+                                <option value="custom">Custom Tour Request</option>
+                                <option value="group">Group Booking</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactMessage">Message *</label>
+                            <textarea id="contactMessage" name="message" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+
+                <div class="contact-info">
+                    <div class="info-card">
+                        <div class="info-icon">📍</div>
+                        <h3>Address</h3>
+                        <p>
+                            Old City Mongolia Guesthouse<br>
+                            Sukhbaatar District<br>
+                            Ulaanbaatar 14200, Mongolia
+                        </p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">📞</div>
+                        <h3>Phone</h3>
+                        <p>
+                            <strong>Main:</strong> <a href="tel:+97611234567">+976 11 234 567</a><br>
+                            <strong>Emergency:</strong> <a href="tel:+97611234568">+976 11 234 568</a>
+                        </p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">✉️</div>
+                        <h3>Email</h3>
+                        <p>
+                            <strong>General:</strong> <a href="mailto:info@oldcitymongolia.com">info@oldcitymongolia.com</a><br>
+                            <strong>Reservations:</strong> <a href="mailto:booking@oldcitymongolia.com">booking@oldcitymongolia.com</a>
+                        </p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">🕐</div>
+                        <h3>Hours</h3>
+                        <ul class="hours-list">
+                            <li><span>Monday - Friday</span> <span>8:00 AM - 8:00 PM</span></li>
+                            <li><span>Saturday</span> <span>9:00 AM - 6:00 PM</span></li>
+                            <li><span>Sunday</span> <span>10:00 AM - 4:00 PM</span></li>
+                        </ul>
+                        <div class="response-time">
+                            <strong>Response Time:</strong> We typically respond within 24 hours on business days.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="why-contact">
+                <div style="text-align: center; margin-bottom: 50px;">
+                    <h2 style="color: #987654; font-size: 2.5rem; margin: 0;">Why Contact Us?</h2>
+                </div>
+                <div class="why-grid">
+                    <div class="why-item">
+                        <div class="why-icon">⚡</div>
+                        <h4>Quick Response</h4>
+                        <p>Get answers within 24 hours from our experienced team.</p>
+                    </div>
+                    <div class="why-item">
+                        <div class="why-icon">🎯</div>
+                        <h4>Personalized Service</h4>
+                        <p>Custom arrangements tailored to your specific needs and preferences.</p>
+                    </div>
+                    <div class="why-item">
+                        <div class="why-icon">💰</div>
+                        <h4>Best Rates</h4>
+                        <p>Direct booking with us often includes special discounts and group rates.</p>
+                    </div>
+                    <div class="why-item">
+                        <div class="why-icon">✅</div>
+                        <h4>Expert Guidance</h4>
+                        <p>Get advice from experienced travelers and local Mongolia experts.</p>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Old City Mongolia. All rights reserved.</p>
+            <p>Created with care for travelers seeking authentic experiences.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you shortly.');
+            this.reset();
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
