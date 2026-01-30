@@ -22,7 +22,7 @@
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="accommodations.html" class="nav-link">Accommodations</a></li>
                 <li><a href="trips.html" class="nav-link">Trips</a></li>
-                <li><a href="tickets.html" class="nav-link">Tickets</a></li>
+                <li><a href="attractions.html" class="nav-link">Attractions</a></li>
                 <li><a href="events.html" class="nav-link">Events</a></li>
                 <li><a href="tips.html" class="nav-link">Tips</a></li>
                 <li><a href="about.html" class="nav-link">About Us</a></li>
@@ -62,8 +62,8 @@
                         <h3 class="card-title">Male Room</h3>
                         <div class="card-content">
                             <p>Comfortable shared accommodation with traditional Mongolian décor. <strong>8 beds available.</strong></p>
-                            <p style="font-size: 0.9rem; color: #666;">From <strong>$25/night</strong></p>
-                            <button class="book-btn" onclick="event.stopPropagation(); openModal('roomBookingModal')" aria-label="Book Male Room">Book Now</button>
+                            <p style="font-size: 0.9rem; color: #666;">From <strong>$16 per bed/night</strong></p>
+                            <button class="book-btn" onclick="event.stopPropagation(); openRoomBooking('male')" aria-label="Book Male Room">Book a Bed</button>
                         </div>
                     </div>
 
@@ -75,8 +75,8 @@
                         <h3 class="card-title">Female Room</h3>
                         <div class="card-content">
                             <p>Safe and welcoming shared space for female travelers. <strong>8 beds available.</strong></p>
-                            <p style="font-size: 0.9rem; color: #666;">From <strong>$25/night</strong></p>
-                            <button class="book-btn" onclick="event.stopPropagation(); openModal('roomBookingModal')" aria-label="Book Female Room">Book Now</button>
+                            <p style="font-size: 0.9rem; color: #666;">From <strong>$16 per bed/night</strong></p>
+                            <button class="book-btn" onclick="event.stopPropagation(); openRoomBooking('female')" aria-label="Book Female Room">Book a Bed</button>
                         </div>
                     </div>
                 </div>
@@ -153,26 +153,15 @@
             </div>
         </section>
 
-        <!-- Tickets, Events, and Tips Preview Section -->
+        <!-- Events and Tips Preview Section -->
         <section class="section preview-section" id="explore-more">
             <div class="section-container">
                 <h2 class="section-title">Plan More of Your Journey</h2>
                 <p class="section-intro">
-                    Browse curated tickets, upcoming cultural events, and essential travel tips to make the most of Mongolia.
+                    Explore upcoming cultural events and essential travel tips to make the most of Mongolia.
                 </p>
 
                 <div class="preview-grid">
-                    <a href="tickets.html" class="preview-card" aria-label="Explore tickets">
-                        <div class="preview-image">
-                            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200&h=800&fit=crop" alt="Tickets for Mongolian experiences" loading="lazy">
-                        </div>
-                        <div class="preview-content">
-                            <h3>Tickets</h3>
-                            <p>Reserve seats for museums, performances, and cultural showcases.</p>
-                            <span class="preview-button">Read More →</span>
-                        </div>
-                    </a>
-
                     <a href="events.html" class="preview-card" aria-label="Discover events">
                         <div class="preview-image">
                             <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&h=800&fit=crop" alt="Festival in Mongolia" loading="lazy">
@@ -213,6 +202,101 @@
             </div>
         </section>
 
+        <!-- Reviews Section -->
+        <section class="section reviews-section" id="reviews">
+            <div class="section-container">
+                <h2 class="section-title">Guest Reviews</h2>
+                <p class="section-intro">What travelers say about staying with Old City Mongolia Experience.</p>
+
+                <div class="reviews-carousel" aria-label="Guest reviews carousel">
+                    <button class="review-arrow" type="button" data-direction="prev" aria-label="Previous reviews">&#x2039;</button>
+                    <div class="reviews-viewport">
+                        <div class="reviews-track">
+                            <article class="review-card" data-review="1">
+                                <div class="review-header">
+                                    <!-- TODO: Reviewer photo not available – real image needed. -->
+                                    <img src="https://via.placeholder.com/80" alt="Avatar placeholder" class="review-avatar" loading="lazy">
+                                    <div class="reviewer-info">
+                                        <h3 class="reviewer-name">이호재</h3>
+                                    </div>
+                                </div>
+                                <p class="review-text" id="review-text-1">
+                                    I stayed at this hostel for 11 of my 12 days in Mongolia.<br><br>
+                                    The owner is extremely thorough in maintaining the hostel. The washing machine is available, the shower has good water pressure, and the hot water runs smoothly. The host is always attentive. This hostel is impeccable.<br><br>
+                                    I went on a 5-night, 6-day Gobi tour led by the owner. This was my fifth tour since the owner started, and I was able to see the entire Gobi Desert at a reasonable price. The host was also very accommodating throughout the trip.<br><br>
+                                    If you're planning a trip to Mongolia, I highly recommend this hostel. The owner speaks English and Russian. Ask about the tours and compare options. I think you won't regret it.
+                                </p>
+                                <button class="review-toggle" type="button" aria-expanded="false" aria-controls="review-text-1">Read more</button>
+                            </article>
+
+                            <article class="review-card" data-review="2">
+                                <div class="review-header">
+                                    <!-- TODO: Reviewer photo not available – real image needed. -->
+                                    <img src="https://via.placeholder.com/80" alt="Avatar placeholder" class="review-avatar" loading="lazy">
+                                    <div class="reviewer-info">
+                                        <h3 class="reviewer-name">Maggg ggg</h3>
+                                    </div>
+                                </div>
+                                <p class="review-text" id="review-text-2">
+                                    Wonderful hostel in UB! Very comfortable beds, cute kitchen and relaxing living rooms. And washing machine for free is great. And everything is so nice and clean! Just exactly like what you see on the picture when you book it!<br><br>
+                                    The most important thing is that the host of the hostel is soooo nice, although he didn't offer tours yet, he always tries his best to help you with lots of things and giving suggestions about the traveling.<br><br>
+                                    And the location is so convenient because it is just nearby the state department store and mostly every spot can walk by.<br><br>
+                                    Every time after the travel from the countryside, you only want to book this hostel for rest because it's so cozy just like home!
+                                </p>
+                                <button class="review-toggle" type="button" aria-expanded="false" aria-controls="review-text-2">Read more</button>
+                            </article>
+
+                            <article class="review-card" data-review="3">
+                                <div class="review-header">
+                                    <!-- TODO: Reviewer photo not available – real image needed. -->
+                                    <img src="https://via.placeholder.com/80" alt="Avatar placeholder" class="review-avatar" loading="lazy">
+                                    <div class="reviewer-info">
+                                        <h3 class="reviewer-name">Isabelle Goube</h3>
+                                    </div>
+                                </div>
+                                <p class="review-text" id="review-text-3">
+                                    Since I arrived the owner Agge took care about myself and made sure I could enjoy Mongolia in the best conditions. He has organised a tour in the Gobi desert which I highly recommend. Deegi was our amazing guide, driver and translator during the 6 days tour.<br><br>
+                                    He let us all the necessary time we needed for each site and even showed us additional sites that were not initially planned as he wanted us to learn as much as possible of his country and make us happy.<br><br>
+                                    In addition, we were a lovely group of 4 unforgettable people who became true friends. I could not expect a better way to discover Gobi. The most incredible is that this tour was cheaper than any other offers.<br><br>
+                                    I definitely highly recommend you to contact Agge if you are interesting to visit the Gobi region. It will let you an unforgettable memory!
+                                </p>
+                                <button class="review-toggle" type="button" aria-expanded="false" aria-controls="review-text-3">Read more</button>
+                            </article>
+
+                            <article class="review-card" data-review="4">
+                                <div class="review-header">
+                                    <!-- TODO: Reviewer photo not available – real image needed. -->
+                                    <img src="https://via.placeholder.com/80" alt="Avatar placeholder" class="review-avatar" loading="lazy">
+                                    <div class="reviewer-info">
+                                        <h3 class="reviewer-name">Robert</h3>
+                                    </div>
+                                </div>
+                                <p class="review-text" id="review-text-4">
+                                    Had a great time staying here. The house was super clean, feels cozy and is just about the right size to build a small community with all the other backpackers. It was nice exchanging all our experiences together. Besides that, the host/service was top notch. The owner was always available and was always happy to help with everything. He could tell us everything we needed to know to travel Mongolia.
+                                </p>
+                                <button class="review-toggle" type="button" aria-expanded="false" aria-controls="review-text-4">Read more</button>
+                            </article>
+
+                            <article class="review-card" data-review="5">
+                                <div class="review-header">
+                                    <!-- TODO: Reviewer photo not available – real image needed. -->
+                                    <img src="https://via.placeholder.com/80" alt="Avatar placeholder" class="review-avatar" loading="lazy">
+                                    <div class="reviewer-info">
+                                        <h3 class="reviewer-name">Patti DiVita</h3>
+                                    </div>
+                                </div>
+                                <p class="review-text" id="review-text-5">
+                                    Aggie was one of the most accommodating, fun and helpful hosts! He set up tours for us, and was around to help with anything. Very interactive and a kind gentleman. The facilities were clean and had everything you need plus some free extras! Washing machine and even filtered water to fill our bottles. A first I have ever seen! Some people might not like how cozy it is, but I loved it. (He also owns a brand new place that's huge, so you can go there :) ) I would stay there again.
+                                </p>
+                                <button class="review-toggle" type="button" aria-expanded="false" aria-controls="review-text-5">Read more</button>
+                            </article>
+                        </div>
+                    </div>
+                    <button class="review-arrow" type="button" data-direction="next" aria-label="Next reviews">&#x203A;</button>
+                </div>
+            </div>
+        </section>
+
         <!-- Contact Section -->
         <section class="section contact-section" id="contact">
             <div class="section-container">
@@ -242,7 +326,7 @@
     <div id="roomBookingModal" class="modal">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
-            <h2 style="color: #987654; margin-bottom: 1.5rem;">Book Your Room</h2>
+            <h2 style="color: #987654; margin-bottom: 1.5rem;">Book a Bed</h2>
             <form id="roomBookingForm" class="booking-form">
                 <div class="form-group">
                     <label for="roomGuestName">Guest Name *</label>
@@ -263,8 +347,8 @@
                     <label for="roomType">Room Type *</label>
                     <select id="roomType" name="roomType" required>
                         <option value="">Select a room</option>
-                        <option value="male">Male Room - $25/night</option>
-                        <option value="female">Female Room - $25/night</option>
+                        <option value="male">Male Room - $16 per bed/night</option>
+                        <option value="female">Female Room - $16 per bed/night</option>
                     </select>
                 </div>
 
@@ -287,7 +371,33 @@
                         <option value="2">2 Beds</option>
                         <option value="3">3 Beds</option>
                         <option value="4">4 Beds</option>
+                        <option value="5">5 Beds</option>
+                        <option value="6">6 Beds</option>
+                        <option value="7">7 Beds</option>
+                        <option value="8">8 Beds</option>
                     </select>
+                </div>
+                <div id="roomAvailabilityMessage" class="availability-message" role="status" aria-live="polite"></div>
+                <div class="booking-summary" id="roomBookingSummary">
+                    <h3>Booking Summary</h3>
+                    <div class="summary-grid">
+                        <div class="summary-item">
+                            <span>Room</span>
+                            <strong id="summaryRoomType">-</strong>
+                        </div>
+                        <div class="summary-item">
+                            <span>Total nights</span>
+                            <strong id="summaryNights">-</strong>
+                        </div>
+                        <div class="summary-item">
+                            <span>Beds</span>
+                            <strong id="summaryBeds">-</strong>
+                        </div>
+                        <div class="summary-item">
+                            <span>Total price</span>
+                            <strong id="summaryPrice">$0.00</strong>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group">

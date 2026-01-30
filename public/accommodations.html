@@ -338,7 +338,8 @@
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="accommodations.html" class="nav-link active">Accommodations</a></li>
                 <li><a href="trips.html" class="nav-link">Trips</a></li>
-                <li><a href="tickets.html" class="nav-link">Tickets</a></li>
+                <li><a href="attractions.html" class="nav-link">Attractions</a></li>
+                <li><a href="tips.html" class="nav-link">Tips</a></li>
                 <li><a href="events.html" class="nav-link">Events</a></li>
                 <li><a href="tips.html" class="nav-link">Tips</a></li>
                 <li><a href="about.html" class="nav-link">About Us</a></li>
@@ -368,45 +369,39 @@
             </div>
 
             <div class="rooms-grid">
-                <div class="room-card" onclick="showAccommodationDetail('Male Dormitory', '$25/night', 'Welcoming shared accommodation with clean, comfortable beds and traditional Mongolian décor. Perfect for solo travelers looking to meet other guests and experience authentic hospitality.', ['Quality bedding & pillows', 'Free high-speed Wi-Fi', 'Shared kitchen & dining', 'Lounge area with TV', 'Shared shower & bathroom', '24/7 security', 'Laundry service', 'Travel advice & bookings'])" style="cursor: pointer;">
+                <div class="room-card" data-room="male" style="cursor: pointer;">
                     <div class="room-image">
-                        <img src="https://images.unsplash.com/photo-1631049307038-da5ec5d79645?w=400&h=280&fit=crop" alt="Male Dorm">
+                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=400&h=280&fit=crop" alt="Male Room">
                         <span class="room-badge">8 Beds</span>
                     </div>
                     <div class="room-content">
-                        <h3>Male Dormitory</h3>
-                        <p class="price-display">$25/night</p>
-                        <p class="room-desc">Welcoming shared accommodation with clean, comfortable beds and traditional décor for solo travelers.</p>
-                        <ul class="amenities">
-                            <li>Quality bedding & pillows</li>
-                            <li>Free high-speed Wi-Fi</li>
-                            <li>Shared facilities</li>
-                            <li>24/7 security</li>
-                        </ul>
-                        <button class="book-button" onclick="event.stopPropagation(); openModal('roomBookingModal')">Book Now</button>
+                        <h3>Male Room</h3>
+                        <p class="price-display">$16 per bed / night</p>
+                        <p class="room-desc">Shared dorm for male travelers with cozy bedding, secure storage, and a relaxed hostel vibe.</p>
+                        <div class="room-meta">
+                            <span>Total beds: 8</span>
+                            <span>Cozy hostel style</span>
+                        </div>
+                        <button class="book-button book-bed-btn" data-room="male">Book a Bed</button>
                     </div>
                 </div>
 
-                <div class="room-card" onclick="showAccommodationDetail('Female Dormitory', '$25/night', 'Safe, women-only shared space designed for female travelers seeking comfort and community. Our all-female dorm provides a secure and welcoming environment with excellent amenities.', ['Quality bedding & pillows', 'Free high-speed Wi-Fi', 'Women-only facilities', '24/7 security & safety', 'Shared kitchen & dining', 'Lounge area with TV', 'Laundry service', 'Travel information & maps'])" style="cursor: pointer;">
+                <div class="room-card" data-room="female" style="cursor: pointer;">
                     <div class="room-image">
-                        <img src="https://images.unsplash.com/photo-1631049307038-da5ec5d79645?w=400&h=280&fit=crop" alt="Female Dorm">
+                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=400&h=280&fit=crop" alt="Female Room">
                         <span class="room-badge">8 Beds</span>
                     </div>
                     <div class="room-content">
-                        <h3>Female Dormitory</h3>
-                        <p class="price-display">$25/night</p>
-                        <p class="room-desc">Safe, women-only shared space designed for female travelers seeking comfort and community.</p>
-                        <ul class="amenities">
-                            <li>Quality bedding & pillows</li>
-                            <li>Free high-speed Wi-Fi</li>
-                            <li>Women-only facilities</li>
-                            <li>24/7 security & safety</li>
-                        </ul>
-                        <button class="book-button" onclick="event.stopPropagation(); openModal('roomBookingModal')">Book Now</button>
+                        <h3>Female Room</h3>
+                        <p class="price-display">$16 per bed / night</p>
+                        <p class="room-desc">Women-only dorm with calm lighting, privacy curtains, and a secure, welcoming atmosphere.</p>
+                        <div class="room-meta">
+                            <span>Total beds: 8</span>
+                            <span>Women-only space</span>
+                        </div>
+                        <button class="book-button book-bed-btn" data-room="female">Book a Bed</button>
                     </div>
                 </div>
-
-
             </div>
 
             <div class="highlights-section">
@@ -451,7 +446,7 @@
     <div id="roomBookingModal" class="modal">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
-            <h2 style="color: #987654; margin-bottom: 1.5rem;">Book Your Room</h2>
+            <h2 style="color: #987654; margin-bottom: 1.5rem;">Book a Bed</h2>
             <form id="roomBookingForm" class="booking-form">
                 <div class="form-group">
                     <label for="roomGuestName">Guest Name *</label>
@@ -469,8 +464,8 @@
                     <label for="roomType">Room Type *</label>
                     <select id="roomType" required>
                         <option value="">Select a room</option>
-                        <option value="male">Male Room - $25/night</option>
-                        <option value="female">Female Room - $25/night</option>
+                        <option value="male">Male Room - $16 per bed/night</option>
+                        <option value="female">Female Room - $16 per bed/night</option>
                     </select>
                 </div>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
@@ -491,7 +486,33 @@
                         <option value="2">2 Beds</option>
                         <option value="3">3 Beds</option>
                         <option value="4">4 Beds</option>
+                        <option value="5">5 Beds</option>
+                        <option value="6">6 Beds</option>
+                        <option value="7">7 Beds</option>
+                        <option value="8">8 Beds</option>
                     </select>
+                </div>
+                <div id="roomAvailabilityMessage" class="availability-message" role="status" aria-live="polite"></div>
+                <div class="booking-summary" id="roomBookingSummary">
+                    <h3>Booking Summary</h3>
+                    <div class="summary-grid">
+                        <div class="summary-item">
+                            <span>Room</span>
+                            <strong id="summaryRoomType">-</strong>
+                        </div>
+                        <div class="summary-item">
+                            <span>Total nights</span>
+                            <strong id="summaryNights">-</strong>
+                        </div>
+                        <div class="summary-item">
+                            <span>Beds</span>
+                            <strong id="summaryBeds">-</strong>
+                        </div>
+                        <div class="summary-item">
+                            <span>Total price</span>
+                            <strong id="summaryPrice">$0.00</strong>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>Payment Method *</label>

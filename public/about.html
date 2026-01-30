@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Learn about Old City Mongolia's story, mission, and commitment to authentic travel experiences.">
-    <title>About Us - Old City Mongolia</title>
+    <meta name="description" content="About Old City Mongolia Experience and our story.">
+    <title>About Us - Old City Mongolia Experience</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .page-hero {
-            height: 450px;
-            background: linear-gradient(135deg, rgba(152, 118, 84, 0.9), rgba(80, 50, 30, 0.9)), 
+            height: 420px;
+            background: linear-gradient(135deg, rgba(124, 71, 0, 0.9), rgba(191, 107, 0, 0.9)),
                         url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=450&fit=crop');
             background-size: cover;
             background-position: center;
@@ -17,325 +17,34 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: white;
+            color: #ffffff;
             position: relative;
             padding: 40px 20px;
         }
 
         .page-hero h1 {
-            font-size: 3.2rem;
+            font-size: 3rem;
             margin: 0;
             font-weight: 700;
-            animation: slideDown 0.8s ease;
-        }
-
-        .page-hero p {
-            font-size: 1.2rem;
-            margin-top: 12px;
-            opacity: 0.95;
-            animation: slideUp 0.8s ease 0.2s both;
         }
 
         .page-container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 60px 20px 90px;
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            color: #987654;
-            margin-bottom: 0;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #987654, transparent);
-        }
-
-        .story-section {
-            background: white;
-            padding: 50px;
-            border-radius: 14px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-            margin-bottom: 60px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .story-text h3 {
-            font-size: 1.8rem;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .story-text p {
-            color: #666;
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-
-        .story-image {
-            width: 100%;
-            height: 350px;
-            background: linear-gradient(135deg, #987654, #7a5d47);
+        .about-card {
+            background: var(--white);
+            border: 1px solid var(--primary-color);
+            border-left: 6px solid var(--accent-color);
+            padding: 32px;
             border-radius: 12px;
-            overflow: hidden;
+            box-shadow: 0 12px 28px rgba(124, 71, 0, 0.15);
         }
 
-        .story-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .value-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            border-top: 4px solid #987654;
-        }
-
-        .value-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 50px rgba(152, 118, 84, 0.2);
-        }
-
-        .value-icon {
-            font-size: 3.5rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .value-card h4 {
-            font-size: 1.4rem;
-            color: #333;
-            margin: 15px 0;
-        }
-
-        .value-card p {
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        .team-section {
-            background: linear-gradient(135deg, #fdf5e6, #f5e8d9);
-            padding: 50px;
-            border-radius: 14px;
-            margin-bottom: 60px;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .team-member {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .team-member:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 40px rgba(152, 118, 84, 0.15);
-        }
-
-        .team-image {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, #987654, #7a5d47);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-        }
-
-        .team-info {
-            padding: 25px;
-            text-align: center;
-        }
-
-        .team-member h4 {
-            font-size: 1.3rem;
-            color: #333;
-            margin: 0 0 5px 0;
-        }
-
-        .team-role {
-            color: #987654;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .team-bio {
-            color: #666;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        .stats-section {
-            background: white;
-            padding: 50px;
-            border-radius: 14px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-            margin-bottom: 60px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 30px;
-        }
-
-        .stat-number {
-            font-size: 2.8rem;
-            font-weight: bold;
-            color: #987654;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            color: #333;
-            margin: 0;
-        }
-
-        .commitment-box {
-            background: linear-gradient(135deg, #fdf5e6, #f5ede0);
-            padding: 40px;
-            border-radius: 12px;
-            border-left: 5px solid #987654;
-            margin-bottom: 60px;
-        }
-
-        .commitment-box h3 {
-            color: #333;
-            margin-top: 0;
-            font-size: 1.6rem;
-        }
-
-        .commitment-box p {
-            color: #666;
-            line-height: 1.8;
-            margin: 15px 0;
-        }
-
-        .cta-section {
-            background: white;
-            padding: 50px;
-            border-radius: 14px;
-            text-align: center;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-            margin-top: 60px;
-        }
-
-        .cta-section h2 {
-            color: #987654;
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-
-        .cta-section p {
-            color: #666;
-            font-size: 1.05rem;
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #987654, #7a5d47);
-            color: white;
-            padding: 16px 45px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(152, 118, 84, 0.3);
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .page-hero h1 {
-                font-size: 2rem;
-            }
-
-            .story-section {
-                grid-template-columns: 1fr;
-                padding: 30px;
-            }
-
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
+        .about-card p {
+            margin-bottom: 16px;
         }
     </style>
 </head>
@@ -352,7 +61,7 @@
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="accommodations.html" class="nav-link">Accommodations</a></li>
                 <li><a href="trips.html" class="nav-link">Trips</a></li>
-                <li><a href="tickets.html" class="nav-link">Tickets</a></li>
+                <li><a href="attractions.html" class="nav-link">Attractions</a></li>
                 <li><a href="events.html" class="nav-link">Events</a></li>
                 <li><a href="tips.html" class="nav-link">Tips</a></li>
                 <li><a href="about.html" class="nav-link active">About Us</a></li>
@@ -361,183 +70,157 @@
         </div>
     </nav>
 
-    <div class="page-hero">
+    <header class="page-hero">
         <div>
-            <h1>About Old City Mongolia</h1>
-            <p>Connecting travelers with authentic Mongolian experiences since 2010</p>
+            <h1>About Us – Old City Mongolia Experience</h1>
         </div>
-    </div>
+    </header>
 
-    <main>
-        <div class="page-container">
-            <div class="story-section">
-                <div class="story-text">
-                    <h3>Our Story</h3>
-                    <p>
-                        Old City Mongolia was born from a passion for sharing the beauty and culture of our homeland with the world. 
-                        Founded in 2010, we started as a small family guesthouse in Ulaanbaatar's historic district.
-                    </p>
-                    <p>
-                        What began as a dream to offer travelers authentic experiences has grown into a trusted name in Mongolian tourism. 
-                        Our guesthouse has welcomed thousands of guests from every continent, each leaving with unforgettable memories and 
-                        deeper appreciation for Mongolian culture.
-                    </p>
-                    <p>
-                        Today, we combine traditional hospitality with modern comfort, carefully curating experiences that connect our guests 
-                        with the heart and soul of Mongolia.
-                    </p>
-                </div>
-                <div class="story-image">
-                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=350&fit=crop" alt="Mongolia landscape">
-                </div>
-            </div>
+    <main class="page-container">
+        <section class="about-card">
+            <p>
+                Old City Mongolia Experience was opened in May 2024, and since then we have had the joy of welcoming travelers from all around the world. What started as a small guesthouse has grown into a place where people meet, share stories, and discover the real spirit of Mongolia. Every guest who walks through our doors becomes part of our journey—and we are grateful for each traveler who chooses to stay with us.
+            </p>
+            <p>
+                We offer comfortable accommodation in the heart of Ulaanbaatar, and we also organize unforgettable trips across Mongolia. Since June 2025, we have been carefully planning and creating travel experiences that allow our guests to explore Mongolia’s vast landscapes, rich culture, and local way of life. By contacting us, we will personally help you plan your journey so you can experience Mongolia in a meaningful, safe, and memorable way.
+            </p>
+            <p>
+                We are proud to be located in the very center of the city, close to everything Ulaanbaatar has to offer. Beginning in June 2026, we will also host special summer events at the fountain in front of the State Department Store. These events were our own idea, created to bring travelers and local people together. In cooperation with the Ministry of Tourism and the Mayor of Ulaanbaatar, we have decided to make these events a yearly summer tradition.
+            </p>
+            <p>
+                At Old City Mongolia Experience, we believe that traveling is not just about visiting places—it is about connecting with people, culture, and stories. We look forward to welcoming you and helping you create memories that will stay with you long after you leave Mongolia.
+            </p>
+        </section>
 
-            <div class="section-header">
-                <h2>Our Core Values</h2>
-            </div>
-
-            <div class="values-grid">
-                <div class="value-card">
-                    <span class="value-icon">🤝</span>
-                    <h4>Authenticity</h4>
-                    <p>We provide genuine connections with Mongolian culture, people, and landscapes — not just tourist attractions.</p>
-                </div>
-
-                <div class="value-card">
-                    <span class="value-icon">♻️</span>
-                    <h4>Sustainability</h4>
-                    <p>We respect and protect Mongolia's pristine environment for future generations while supporting local communities.</p>
-                </div>
-
-                <div class="value-card">
-                    <span class="value-icon">⭐</span>
-                    <h4>Excellence</h4>
-                    <p>We maintain the highest standards of service quality, safety, and guest satisfaction in everything we do.</p>
-                </div>
-
-                <div class="value-card">
-                    <span class="value-icon">❤️</span>
-                    <h4>Hospitality</h4>
-                    <p>Warm, genuine hospitality is at the heart of everything — treating guests as friends, not customers.</p>
-                </div>
-
-                <div class="value-card">
-                    <span class="value-icon">🌍</span>
-                    <h4>Community</h4>
-                    <p>We actively support local artisans, guides, and communities through fair wages and partnership opportunities.</p>
-                </div>
-
-                <div class="value-card">
-                    <span class="value-icon">🎓</span>
-                    <h4>Education</h4>
-                    <p>We empower travelers and staff through cultural exchange and knowledge sharing about Mongolia's rich heritage.</p>
-                </div>
-            </div>
-
-            <div class="stats-section">
-                <div class="section-header">
-                    <h2>By The Numbers</h2>
-                </div>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number">14+</div>
-                        <p class="stat-label">Years of Experience</p>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">5,000+</div>
-                        <p class="stat-label">Happy Guests</p>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">50+</div>
-                        <p class="stat-label">Countries Represented</p>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">30+</div>
-                        <p class="stat-label">Expert Staff Members</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="team-section">
-                <div class="section-header">
-                    <h2>Meet Our Team</h2>
-                </div>
+        <section class="section team-section" id="team">
+            <div class="section-container">
+                <h2 class="section-title">Our Team</h2>
                 <div class="team-grid">
-                    <div class="team-member">
-                        <div class="team-image">👨‍💼</div>
-                        <div class="team-info">
-                            <h4>Bataar</h4>
-                            <p class="team-role">Founder & Owner</p>
-                            <p class="team-bio">With over 20 years in hospitality, Bataar founded Old City Mongolia to share his passion for Mongolian heritage and culture with travelers seeking authentic experiences.</p>
-                        </div>
-                    </div>
-
-                    <div class="team-member">
-                        <div class="team-image">👩‍💼</div>
-                        <div class="team-info">
-                            <h4>Nomina</h4>
-                            <p class="team-role">Operations Manager</p>
-                            <p class="team-bio">Nomina ensures every aspect of your stay exceeds expectations, from check-in to checkout. Her attention to detail makes our guesthouse run seamlessly.</p>
-                        </div>
-                    </div>
-
-                    <div class="team-member">
-                        <div class="team-image">🧑‍🎓</div>
-                        <div class="team-info">
-                            <h4>Temüjin</h4>
-                            <p class="team-role">Tour Guide Director</p>
-                            <p class="team-bio">With 15 years of expedition experience across Mongolia's vast landscapes, Temüjin leads our most adventurous journeys with expertise and passion.</p>
-                        </div>
-                    </div>
-
-                    <div class="team-member">
-                        <div class="team-image">👩‍🍳</div>
-                        <div class="team-info">
-                            <h4>Sukhara</h4>
-                            <p class="team-role">Head Chef</p>
-                            <p class="team-bio">Sukhara blends traditional Mongolian recipes with international cuisine, using locally-sourced ingredients to create unforgettable dining experiences.</p>
-                        </div>
-                    </div>
-
-                    <div class="team-member">
-                        <div class="team-image">🌍</div>
-                        <div class="team-info">
-                            <h4>Munkhzul</h4>
-                            <p class="team-role">Cultural Liaison</p>
-                            <p class="team-bio">Munkhzul bridges the gap between guests and local communities, facilitating meaningful cultural exchanges and authentic interactions throughout Mongolia.</p>
-                        </div>
-                    </div>
-
-                    <div class="team-member">
-                        <div class="team-image">🎯</div>
-                        <div class="team-info">
-                            <h4>Enkh</h4>
-                            <p class="team-role">Activities Coordinator</p>
-                            <p class="team-bio">Enkh designs and coordinates all activities and excursions, ensuring each guest finds the perfect adventure suited to their interests and fitness level.</p>
-                        </div>
-                    </div>
+                    <article class="team-card">
+                        <!-- TODO: Replace with real team member info and photo -->
+                        <img src="https://via.placeholder.com/96" alt="Team member placeholder" class="team-avatar" loading="lazy">
+                        <h3 class="team-name">Team Member</h3>
+                        <p class="team-role">Role Title</p>
+                        <p class="team-bio">Short placeholder description about this team member’s role and focus.</p>
+                    </article>
+                    <article class="team-card">
+                        <!-- TODO: Replace with real team member info and photo -->
+                        <img src="https://via.placeholder.com/96" alt="Team member placeholder" class="team-avatar" loading="lazy">
+                        <h3 class="team-name">Team Member</h3>
+                        <p class="team-role">Role Title</p>
+                        <p class="team-bio">Short placeholder description about this team member’s role and focus.</p>
+                    </article>
+                    <article class="team-card">
+                        <!-- TODO: Replace with real team member info and photo -->
+                        <img src="https://via.placeholder.com/96" alt="Team member placeholder" class="team-avatar" loading="lazy">
+                        <h3 class="team-name">Team Member</h3>
+                        <p class="team-role">Role Title</p>
+                        <p class="team-bio">Short placeholder description about this team member’s role and focus.</p>
+                    </article>
+                    <article class="team-card">
+                        <!-- TODO: Replace with real team member info and photo -->
+                        <img src="https://via.placeholder.com/96" alt="Team member placeholder" class="team-avatar" loading="lazy">
+                        <h3 class="team-name">Team Member</h3>
+                        <p class="team-role">Role Title</p>
+                        <p class="team-bio">Short placeholder description about this team member’s role and focus.</p>
+                    </article>
                 </div>
             </div>
+        </section>
 
-            <div class="commitment-box" style="margin-top: 60px;">
-                <h3>Why Choose Old City Mongolia?</h3>
-                <p>
-                    We're not just a guesthouse—we're a gateway to authentic Mongolia. Our team is committed to creating transformative 
-                    travel experiences that respect the environment, support local communities, and leave lasting positive impacts.
-                </p>
-                <p>
-                    <strong>Personal Attention:</strong> Small group sizes and personalized service ensure you receive the attention and care 
-                    you deserve throughout your journey.
-                </p>
-                <p>
-                    <strong>Expert Knowledge:</strong> Our team members are born and raised in Mongolia with deep knowledge of local culture, 
-                    history, and hidden gems most travelers never discover.
-                </p>
-                <p>
-                    <strong>Sustainable Practice:</strong> We operate with environmental responsibility and community support at the core of 
-                    everything we do, ensuring tourism benefits everyone.
-                </p>
+        <section class="section reviews-section" id="reviews">
+            <div class="section-container">
+                <h2 class="section-title">Guest Reviews</h2>
+                <p class="section-intro">What travelers say about staying with Old City Mongolia Experience.</p>
+
+                <div class="reviews-carousel" aria-label="Guest reviews carousel">
+                    <button class="review-arrow" type="button" data-direction="prev" aria-label="Previous reviews">&#x2039;</button>
+                    <div class="reviews-viewport">
+                        <div class="reviews-track">
+                            <article class="review-card" data-review="1">
+                                <div class="review-header">
+                                    <!-- TODO: Reviewer photo not available – real image needed. -->
+                                    <img src="https://via.placeholder.com/80" alt="Avatar placeholder" class="review-avatar" loading="lazy">
+                                    <div class="reviewer-info">
+                                        <h3 class="reviewer-name">이호재</h3>
+                                    </div>
+                                </div>
+                                <p class="review-text" id="review-text-1">
+                                    I stayed at this hostel for 11 of my 12 days in Mongolia.<br><br>
+                                    The owner is extremely thorough in maintaining the hostel. The washing machine is available, the shower has good water pressure, and the hot water runs smoothly. The host is always attentive. This hostel is impeccable.<br><br>
+                                    I went on a 5-night, 6-day Gobi tour led by the owner. This was my fifth tour since the owner started, and I was able to see the entire Gobi Desert at a reasonable price. The host was also very accommodating throughout the trip.<br><br>
+                                    If you're planning a trip to Mongolia, I highly recommend this hostel. The owner speaks English and Russian. Ask about the tours and compare options. I think you won't regret it.
+                                </p>
+                                <button class="review-toggle" type="button" aria-expanded="false" aria-controls="review-text-1">Read more</button>
+                            </article>
+
+                            <article class="review-card" data-review="2">
+                                <div class="review-header">
+                                    <!-- TODO: Reviewer photo not available – real image needed. -->
+                                    <img src="https://via.placeholder.com/80" alt="Avatar placeholder" class="review-avatar" loading="lazy">
+                                    <div class="reviewer-info">
+                                        <h3 class="reviewer-name">Maggg ggg</h3>
+                                    </div>
+                                </div>
+                                <p class="review-text" id="review-text-2">
+                                    Wonderful hostel in UB! Very comfortable beds, cute kitchen and relaxing living rooms. And washing machine for free is great. And everything is so nice and clean! Just exactly like what you see on the picture when you book it!<br><br>
+                                    The most important thing is that the host of the hostel is soooo nice, although he didn't offer tours yet, he always tries his best to help you with lots of things and giving suggestions about the traveling.<br><br>
+                                    And the location is so convenient because it is just nearby the state department store and mostly every spot can walk by.<br><br>
+                                    Every time after the travel from the countryside, you only want to book this hostel for rest because it's so cozy just like home!
+                                </p>
+                                <button class="review-toggle" type="button" aria-expanded="false" aria-controls="review-text-2">Read more</button>
+                            </article>
+
+                            <article class="review-card" data-review="3">
+                                <div class="review-header">
+                                    <!-- TODO: Reviewer photo not available – real image needed. -->
+                                    <img src="https://via.placeholder.com/80" alt="Avatar placeholder" class="review-avatar" loading="lazy">
+                                    <div class="reviewer-info">
+                                        <h3 class="reviewer-name">Isabelle Goube</h3>
+                                    </div>
+                                </div>
+                                <p class="review-text" id="review-text-3">
+                                    Since I arrived the owner Agge took care about myself and made sure I could enjoy Mongolia in the best conditions. He has organised a tour in the Gobi desert which I highly recommend. Deegi was our amazing guide, driver and translator during the 6 days tour.<br><br>
+                                    He let us all the necessary time we needed for each site and even showed us additional sites that were not initially planned as he wanted us to learn as much as possible of his country and make us happy.<br><br>
+                                    In addition, we were a lovely group of 4 unforgettable people who became true friends. I could not expect a better way to discover Gobi. The most incredible is that this tour was cheaper than any other offers.<br><br>
+                                    I definitely highly recommend you to contact Agge if you are interesting to visit the Gobi region. It will let you an unforgettable memory!
+                                </p>
+                                <button class="review-toggle" type="button" aria-expanded="false" aria-controls="review-text-3">Read more</button>
+                            </article>
+
+                            <article class="review-card" data-review="4">
+                                <div class="review-header">
+                                    <!-- TODO: Reviewer photo not available – real image needed. -->
+                                    <img src="https://via.placeholder.com/80" alt="Avatar placeholder" class="review-avatar" loading="lazy">
+                                    <div class="reviewer-info">
+                                        <h3 class="reviewer-name">Robert</h3>
+                                    </div>
+                                </div>
+                                <p class="review-text" id="review-text-4">
+                                    Had a great time staying here. The house was super clean, feels cozy and is just about the right size to build a small community with all the other backpackers. It was nice exchanging all our experiences together. Besides that, the host/service was top notch. The owner was always available and was always happy to help with everything. He could tell us everything we needed to know to travel Mongolia.
+                                </p>
+                                <button class="review-toggle" type="button" aria-expanded="false" aria-controls="review-text-4">Read more</button>
+                            </article>
+
+                            <article class="review-card" data-review="5">
+                                <div class="review-header">
+                                    <!-- TODO: Reviewer photo not available – real image needed. -->
+                                    <img src="https://via.placeholder.com/80" alt="Avatar placeholder" class="review-avatar" loading="lazy">
+                                    <div class="reviewer-info">
+                                        <h3 class="reviewer-name">Patti DiVita</h3>
+                                    </div>
+                                </div>
+                                <p class="review-text" id="review-text-5">
+                                    Aggie was one of the most accommodating, fun and helpful hosts! He set up tours for us, and was around to help with anything. Very interactive and a kind gentleman. The facilities were clean and had everything you need plus some free extras! Washing machine and even filtered water to fill our bottles. A first I have ever seen! Some people might not like how cozy it is, but I loved it. (He also owns a brand new place that's huge, so you can go there :) ) I would stay there again.
+                                </p>
+                                <button class="review-toggle" type="button" aria-expanded="false" aria-controls="review-text-5">Read more</button>
+                            </article>
+                        </div>
+                    </div>
+                    <button class="review-arrow" type="button" data-direction="next" aria-label="Next reviews">&#x203A;</button>
+                </div>
             </div>
+        </section>
     </main>
 
     <footer class="footer">
@@ -546,6 +229,7 @@
             <p>Created with care for travelers seeking authentic experiences.</p>
         </div>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>

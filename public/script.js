@@ -6,7 +6,7 @@ const roomData = {
     male: {
         title: 'Male Room',
         image: 'https://images.unsplash.com/photo-1631049307038-da5ec5d79645?w=600&h=400&fit=crop',
-        price: 25,
+        price: 16,
         beds: 8,
         description: 'A cozy shared dorm with traditional décor, lockers, and easy access to shared facilities.',
         features: [
@@ -19,7 +19,7 @@ const roomData = {
     female: {
         title: 'Female Room',
         image: 'https://images.unsplash.com/photo-1631049307038-da5ec5d79645?w=600&h=400&fit=crop',
-        price: 25,
+        price: 16,
         beds: 8,
         description: 'A safe and welcoming women-only dorm with calm lighting and secure storage.',
         features: [
@@ -112,6 +112,7 @@ function calculateRoomPrice() {
     const checkInDate = document.getElementById('roomCheckIn')?.value;
     const checkOutDate = document.getElementById('roomCheckOut')?.value;
     const roomType = document.getElementById('roomType')?.value;
+    const beds = parseInt(document.getElementById('roomBeds')?.value, 10);
 
     if (!checkInDate || !checkOutDate || !roomType || !roomData[roomType]) {
         const display = document.getElementById('roomPriceDisplay');
@@ -121,11 +122,24 @@ function calculateRoomPrice() {
 
     const checkIn = new Date(checkInDate);
     const checkOut = new Date(checkOutDate);
-    const nights = Math.max(1, Math.ceil((checkOut - checkIn) / (1000 * 60 * 60 * 24)));
-    const total = nights * roomData[roomType].price;
+    const nights = Math.ceil((checkOut - checkIn) / (1000 * 60 * 60 * 24));
+    if (!Number.isFinite(nights) || nights < 1) {
+        const display = document.getElementById('roomPriceDisplay');
+        if (display) display.textContent = '$0';
+        return null;
+    }
+
+    if (!Number.isFinite(beds) || beds < 1 || beds > roomData[roomType].beds) {
+        const display = document.getElementById('roomPriceDisplay');
+        if (display) display.textContent = '$0';
+        return null;
+    }
+
+    const validBeds = beds;
+    const total = nights * roomData[roomType].price * validBeds;
 
     document.getElementById('roomPriceDisplay').textContent = `$${total.toFixed(2)}`;
-    return { nights, total, roomType };
+    return { nights, total, roomType, beds: validBeds };
 }
 
 function calculateTripPrice() {
@@ -230,6 +244,127 @@ async function finalizeBooking(booking) {
     }
 }
 
+// ======================================
+// Room Availability & Booking Summary
+// ======================================
+
+async function fetchRoomAvailability(roomType, checkInDate, checkOutDate) {
+    if (!roomType || !checkInDate || !checkOutDate) return null;
+    const params = new URLSearchParams({ roomType, checkInDate, checkOutDate });
+    const response = await fetch(`/api/availability?${params.toString()}`);
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) {
+        return { error: payload.error || 'Availability check failed.', status: response.status };
+    }
+    return payload;
+}
+
+function setRoomAvailabilityMessage(message, isError = false) {
+    const element = document.getElementById('roomAvailabilityMessage');
+    if (!element) return;
+    element.textContent = message;
+    element.classList.toggle('error', isError);
+}
+
+function updateRoomBookingSummary(summary) {
+    const summaryEl = document.getElementById('roomBookingSummary');
+    if (!summaryEl) return;
+
+    const roomTypeLabel = summary?.roomType && roomData[summary.roomType]
+        ? roomData[summary.roomType].title
+        : '-';
+    const nightsLabel = summary?.nights ? `${summary.nights} night${summary.nights > 1 ? 's' : ''}` : '-';
+    const bedsLabel = summary?.beds ? `${summary.beds} bed${summary.beds > 1 ? 's' : ''}` : '-';
+    const totalLabel = Number.isFinite(summary?.total) ? `$${summary.total.toFixed(2)}` : '$0.00';
+
+    const roomEl = document.getElementById('summaryRoomType');
+    const nightsEl = document.getElementById('summaryNights');
+    const bedsEl = document.getElementById('summaryBeds');
+    const priceEl = document.getElementById('summaryPrice');
+
+    if (roomEl) roomEl.textContent = roomTypeLabel;
+    if (nightsEl) nightsEl.textContent = nightsLabel;
+    if (bedsEl) bedsEl.textContent = bedsLabel;
+    if (priceEl) priceEl.textContent = totalLabel;
+}
+
+function validateRoomDates(checkInDate, checkOutDate) {
+    if (!checkInDate || !checkOutDate) {
+        return { valid: false, message: 'Select check-in and check-out dates to check availability.' };
+    }
+
+    const checkIn = new Date(checkInDate);
+    const checkOut = new Date(checkOutDate);
+
+    if (!(checkOut > checkIn)) {
+        return { valid: false, message: 'Check-out must be after check-in.' };
+    }
+
+    return { valid: true };
+}
+
+function setRoomDateConstraints() {
+    const checkInInput = document.getElementById('roomCheckIn');
+    const checkOutInput = document.getElementById('roomCheckOut');
+
+    if (!checkInInput || !checkOutInput) return;
+
+    const today = new Date();
+    const todayValue = today.toISOString().split('T')[0];
+    checkInInput.min = todayValue;
+    checkOutInput.min = todayValue;
+
+    if (checkInInput.value) {
+        const minCheckOut = new Date(checkInInput.value);
+        minCheckOut.setDate(minCheckOut.getDate() + 1);
+        checkOutInput.min = minCheckOut.toISOString().split('T')[0];
+    }
+}
+
+async function refreshRoomBookingSummary() {
+    const priceInfo = calculateRoomPrice();
+    updateRoomBookingSummary(priceInfo || {});
+
+    const dateCheck = validateRoomDates(
+        document.getElementById('roomCheckIn')?.value,
+        document.getElementById('roomCheckOut')?.value
+    );
+
+    if (!dateCheck.valid || !priceInfo) {
+        setRoomAvailabilityMessage(dateCheck.message, false);
+        return;
+    }
+
+    // Availability check for selected date range
+    try {
+        const availability = await fetchRoomAvailability(
+            priceInfo.roomType,
+            document.getElementById('roomCheckIn')?.value,
+            document.getElementById('roomCheckOut')?.value
+        );
+
+        if (!availability || availability.error) {
+            setRoomAvailabilityMessage(availability?.error || 'Availability is currently unavailable. Please try again.', true);
+            return;
+        }
+
+        if (priceInfo.beds > availability.availableBeds) {
+            setRoomAvailabilityMessage(
+                `Only ${availability.availableBeds} bed${availability.availableBeds === 1 ? '' : 's'} available for these dates.`,
+                true
+            );
+            return;
+        }
+
+        setRoomAvailabilityMessage(
+            `${availability.availableBeds} bed${availability.availableBeds === 1 ? '' : 's'} available for these dates.`,
+            false
+        );
+    } catch (error) {
+        setRoomAvailabilityMessage('Availability is currently unavailable. Please try again.', true);
+    }
+}
+
 // Modal management
 function openModal(modalId) {
     const modal = document.getElementById(modalId);
@@ -275,28 +410,56 @@ function handleRoomBooking(event) {
     const priceInfo = calculateRoomPrice();
     if (!priceInfo) return;
 
-    window.currentBooking = {
-        type: 'room',
-        roomType,
-        checkInDate,
-        checkOutDate,
-        beds,
-        guestName,
-        guestEmail,
-        guestPhone,
-        nights: priceInfo.nights,
-        amount: priceInfo.total,
-        paymentMethod,
-        paymentStatus: paymentMethod === 'pay_in_person' ? 'pay_on_arrival' : 'paid'
-    };
-
-    closeModal('roomBookingModal');
-    if (paymentMethod === 'pay_in_person') {
-        finalizeBooking(window.currentBooking);
+    const dateCheck = validateRoomDates(checkInDate, checkOutDate);
+    if (!dateCheck.valid) {
+        alert(dateCheck.message);
         return;
     }
 
-    openModal('paymentModal');
+    if (!Number.isFinite(beds) || beds < 1 || beds > roomData[roomType].beds) {
+        alert('Please select between 1 and 8 beds.');
+        return;
+    }
+
+    // Validate availability before confirming booking
+    fetchRoomAvailability(roomType, checkInDate, checkOutDate)
+        .then(availability => {
+            if (!availability || availability.error) {
+                alert(availability?.error || 'Availability is currently unavailable. Please try again.');
+                return;
+            }
+
+            if (beds > availability.availableBeds) {
+                alert(`Only ${availability.availableBeds} bed${availability.availableBeds === 1 ? '' : 's'} available for these dates.`);
+                return;
+            }
+
+            window.currentBooking = {
+                type: 'room',
+                roomType,
+                checkInDate,
+                checkOutDate,
+                beds,
+                guestName,
+                guestEmail,
+                guestPhone,
+                nights: priceInfo.nights,
+                amount: priceInfo.total,
+                paymentMethod,
+                paymentStatus: paymentMethod === 'pay_in_person' ? 'pay_on_arrival' : 'paid'
+            };
+
+            closeModal('roomBookingModal');
+            if (paymentMethod === 'pay_in_person') {
+                finalizeBooking(window.currentBooking);
+                return;
+            }
+
+            openModal('paymentModal');
+        })
+        .catch(() => {
+            alert('Availability is currently unavailable. Please try again.');
+        });
 }
 
 function handleTripBooking(event) {
@@ -379,7 +542,7 @@ function showAccommodationDetail(roomKey) {
     const detailHTML = `
         <div class="detail-header">
             <h3>${room.title}</h3>
-            <div class="detail-price">$${room.price}/night</div>
+            <div class="detail-price">$${room.price} per bed / night</div>
         </div>
         <div class="detail-description">${room.description}</div>
         <div class="detail-features">
@@ -388,7 +551,7 @@ function showAccommodationDetail(roomKey) {
                 ${room.features.map(feature => `<li>${feature}</li>`).join('')}
             </ul>
         </div>
-        <button class="detail-btn" type="button" onclick="openModal('roomBookingModal'); closeModal('accommodationDetailModal')">Book This Room</button>
+        <button class="detail-btn" type="button" onclick="openRoomBooking('${roomKey}'); closeModal('accommodationDetailModal')">Book This Room</button>
     `;
 
     const modal = document.getElementById('accommodationDetailModal');
@@ -396,6 +559,15 @@ function showAccommodationDetail(roomKey) {
         modal.querySelector('#accommodationDetail').innerHTML = detailHTML;
         openModal('accommodationDetailModal');
     }
+}
+
+function openRoomBooking(roomType) {
+    const roomSelect = document.getElementById('roomType');
+    if (roomSelect && roomData[roomType]) {
+        roomSelect.value = roomType;
+    }
+    openModal('roomBookingModal');
+    refreshRoomBookingSummary();
 }
 
 function showTripDetail(tripKey) {
@@ -495,16 +667,86 @@ document.addEventListener('DOMContentLoaded', function() {
         card.addEventListener('click', () => showAccommodationDetail(key));
     });
 
+    document.querySelectorAll('.book-bed-btn').forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.stopPropagation();
+            const roomType = this.dataset.room;
+            openRoomBooking(roomType);
+        });
+    });
+
     document.querySelectorAll('.trip-card').forEach(card => {
         const key = card.dataset.trip;
         if (!key || !tripData[key]) return;
         card.addEventListener('click', () => showTripDetail(key));
     });
 
+    document.querySelectorAll('.review-toggle').forEach(button => {
+        button.addEventListener('click', function() {
+            const card = this.closest('.review-card');
+            if (!card) return;
+            card.classList.toggle('expanded');
+            const isExpanded = card.classList.contains('expanded');
+            this.textContent = isExpanded ? 'Read less' : 'Read more';
+            this.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+        });
+    });
+
+    document.querySelectorAll('.reviews-carousel').forEach(carousel => {
+        const track = carousel.querySelector('.reviews-track');
+        const prevButton = carousel.querySelector('[data-direction="prev"]');
+        const nextButton = carousel.querySelector('[data-direction="next"]');
+        if (!track || !prevButton || !nextButton) return;
+
+        let currentIndex = 0;
+
+        const updateCarousel = () => {
+            const cards = Array.from(track.children);
+            if (!cards.length) return;
+            const cardWidth = cards[0].getBoundingClientRect().width;
+            const gap = parseFloat(getComputedStyle(track).gap || '0');
+            const viewportWidth = carousel.querySelector('.reviews-viewport').getBoundingClientRect().width;
+            const visibleCount = Math.max(1, Math.floor((viewportWidth + gap) / (cardWidth + gap)));
+            const maxIndex = Math.max(0, cards.length - visibleCount);
+
+            if (currentIndex > maxIndex) currentIndex = maxIndex;
+            const offset = currentIndex * (cardWidth + gap);
+            track.style.transform = `translateX(-${offset}px)`;
+            prevButton.disabled = currentIndex === 0;
+            nextButton.disabled = currentIndex === maxIndex;
+        };
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = Math.max(0, currentIndex - 1);
+            updateCarousel();
+        });
+
+        nextButton.addEventListener('click', () => {
+            const cards = Array.from(track.children);
+            currentIndex = Math.min(cards.length - 1, currentIndex + 1);
+            updateCarousel();
+        });
+
+        window.addEventListener('resize', updateCarousel);
+        updateCarousel();
+    });
+
     const roomForm = document.getElementById('roomBookingForm');
     if (roomForm) {
-        roomForm.addEventListener('change', calculateRoomPrice);
+        roomForm.addEventListener('change', refreshRoomBookingSummary);
+        roomForm.addEventListener('input', refreshRoomBookingSummary);
         roomForm.addEventListener('submit', handleRoomBooking);
+        refreshRoomBookingSummary();
+    }
+
+    setRoomDateConstraints();
+
+    const checkInInput = document.getElementById('roomCheckIn');
+    if (checkInInput) {
+        checkInInput.addEventListener('change', () => {
+            setRoomDateConstraints();
+            refreshRoomBookingSummary();
+        });
     }
 
     const tripForm = document.getElementById('tripBookingForm');

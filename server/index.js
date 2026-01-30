@@ -44,6 +44,19 @@ app.use(session({
     }
 }));
 
+// Basic CORS support for API endpoints (needed for local previews)
+app.use((req, res, next) => {
+    if (req.path.startsWith('/api/')) {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+        res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PATCH,OPTIONS');
+        if (req.method === 'OPTIONS') {
+            return res.sendStatus(204);
+        }
+    }
+    next();
+});
+
 // Static files
 app.use(express.static(path.join(__dirname, '..', 'public')));
 

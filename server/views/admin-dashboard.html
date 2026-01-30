@@ -176,9 +176,12 @@
                         <th>ID</th>
                         <th>Guest</th>
                         <th>Type</th>
+                        <th>Details</th>
                         <th>Dates</th>
                         <th>Guests</th>
+                        <th>Total</th>
                         <th>Payment</th>
+                        <th>Booked At</th>
                         <th>Status</th>
                         <th>Update</th>
                     </tr>
@@ -229,6 +232,12 @@
                 const guests = booking.bookingType === 'room'
                     ? `Beds: ${booking.beds || 1}`
                     : `Group: ${booking.participants || 1}`;
+                const details = booking.bookingType === 'room'
+                    ? `${booking.roomType ? booking.roomType.toUpperCase() : 'ROOM'}`
+                    : `${booking.tripType ? booking.tripType.toUpperCase() : 'TRIP'}`;
+                const bookedAt = booking.createdAt
+                    ? new Date(booking.createdAt).toLocaleString()
+                    : '-';
                 const paymentMethodLabel = booking.paymentMethod === 'pay_in_person' ? 'Pay in Person' : 'Pay Online';
                 const paymentStatusLabel = booking.paymentMethod === 'pay_in_person' ? 'Pay on Arrival' : 'Paid';
                 const paymentMethodClass = booking.paymentMethod === 'pay_in_person' ? 'method-arrival' : 'method-online';
@@ -238,12 +247,15 @@
                     <td>#${booking.id}</td>
                     <td>${booking.guestName}<br><span class="badge">${booking.guestEmail}</span></td>
                     <td>${booking.bookingType.toUpperCase()}</td>
+                    <td>${details}</td>
                     <td>${dates}</td>
                     <td>${guests}</td>
+                    <td>$${Number(booking.amount || 0).toFixed(2)}</td>
                     <td>
                         <span class="badge ${paymentMethodClass}">${paymentMethodLabel}</span><br>
                         <span class="badge ${paymentStatusClass}">${paymentStatusLabel}</span>
                     </td>
+                    <td>${bookedAt}</td>
                     <td>
                         <select class="status-select" data-id="${booking.id}">
                             <option value="confirmed" ${booking.status === 'confirmed' ? 'selected' : ''}>Confirmed</option>

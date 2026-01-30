@@ -4,12 +4,14 @@
 
 /* CSS Variables for easy customization */
 :root {
-    --primary-color: #987654;
-    --background-color: #fdf5e6;
+    --primary-color: #7c4700;
+    --accent-color: #bf6b00;
+    --background-color: #ffffff;
     --white: #ffffff;
-    --dark-text: #333333;
-    --light-text: #666666;
-    --hover-color: #7a5c42;
+    --dark-text: #7c4700;
+    --light-text: #7c4700;
+    --hover-color: #bf6b00;
+    --shadow-color: rgba(124, 71, 0, 0.2);
     --transition: all 0.3s ease;
 }
 
@@ -146,17 +148,15 @@ main {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--hover-color) 100%),
-                url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=600&fit=crop') center/cover no-repeat;
+    background: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1600&h=900&fit=crop') center/cover no-repeat;
     background-attachment: fixed;
-    background-blend-mode: overlay;
     color: var(--white);
-    padding: 180px 2rem;
+    padding: 220px 2rem;
     text-align: center;
     animation: fadeIn 0.8s ease;
     position: relative;
     overflow: hidden;
-    min-height: 750px;
+    min-height: 820px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -168,7 +168,7 @@ main {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(152, 118, 84, 0.6);
+    background: rgba(124, 71, 0, 0.45);
     pointer-events: none;
 }
 
@@ -188,9 +188,198 @@ main {
 
 .hero-tagline {
     font-size: 1.3rem;
-    color: var(--background-color);
+    color: var(--white);
     margin-bottom: 2rem;
     animation: slideDown 0.8s ease 0.4s both;
+}
+
+/* Shared Page Hero (All inner pages) */
+.page-hero {
+    background: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1600&h=900&fit=crop') center/cover no-repeat !important;
+    height: 520px !important;
+    min-height: 520px !important;
+    padding: 140px 2rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    position: relative !important;
+    overflow: hidden;
+    color: var(--white) !important;
+}
+
+.page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(124, 71, 0, 0.55);
+    z-index: 0;
+}
+
+/* ======================================
+   Theme Overrides (Palette: white, dark brown, orange)
+   ====================================== */
+
+body {
+    color: var(--dark-text) !important;
+    background-color: var(--background-color) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-color) !important;
+}
+
+p, li, span, label, input, textarea {
+    color: var(--dark-text) !important;
+}
+
+a {
+    color: var(--accent-color) !important;
+}
+
+a:hover,
+a:focus {
+    color: var(--primary-color) !important;
+}
+
+.navbar {
+    background-color: var(--white) !important;
+    box-shadow: 0 4px 16px var(--shadow-color) !important;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.nav-link {
+    color: var(--primary-color) !important;
+    border-bottom-color: transparent !important;
+}
+
+.nav-link.active {
+    color: var(--accent-color) !important;
+    border-bottom-color: var(--accent-color) !important;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: var(--accent-color) !important;
+    border-bottom-color: var(--accent-color) !important;
+}
+
+button,
+.read-more-btn,
+.book-trip-btn,
+.cta-btn,
+.primary-btn,
+.secondary-btn,
+.filter-btn,
+.form-submit,
+.submit-btn {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--white) !important;
+}
+
+button:hover,
+.read-more-btn:hover,
+.book-trip-btn:hover,
+.cta-btn:hover,
+.primary-btn:hover,
+.secondary-btn:hover,
+.filter-btn:hover,
+.form-submit:hover,
+.submit-btn:hover {
+    background-color: var(--accent-color) !important;
+    border-color: var(--accent-color) !important;
+}
+
+.card,
+.intro-card,
+.tips-section,
+.callout-card,
+.commitment-box,
+.team-section,
+.stats-section,
+.value-card,
+.preview-card,
+.contact-preview {
+    background-color: var(--white) !important;
+    box-shadow: 0 12px 28px var(--shadow-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.footer,
+.footer p {
+    color: var(--dark-text) !important;
+}
+
+.page-hero > * {
+    position: relative;
+    z-index: 1;
+}
+
+.page-hero h1,
+.page-hero h2,
+.page-hero h3 {
+    color: var(--white) !important;
+}
+
+.page-hero p {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Accommodations booking summary */
+.room-meta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+    color: var(--light-text);
+    font-size: 0.9rem;
+}
+
+.availability-message {
+    margin: 12px 0 16px;
+    font-size: 0.95rem;
+    color: #2e7d32;
+}
+
+.availability-message.error {
+    color: #b71c1c;
+}
+
+.booking-summary {
+    background: #fffaf0;
+    border: 1px solid #f0e2ce;
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 18px;
+}
+
+.booking-summary h3 {
+    margin-bottom: 12px;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+}
+
+.summary-item {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.9rem;
+    color: var(--light-text);
+}
+
+.summary-item strong {
+    color: var(--dark-text);
+    font-size: 1rem;
 }
 
 .cta-button {
@@ -250,6 +439,184 @@ main {
 
 .contact-section {
     background-color: var(--background-color);
+}
+
+.reviews-section {
+    background-color: var(--white);
+}
+
+.reviews-carousel {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.reviews-viewport {
+    overflow: hidden;
+    width: 100%;
+}
+
+.reviews-track {
+    display: flex;
+    gap: 24px;
+    transition: transform 0.4s ease;
+    will-change: transform;
+}
+
+.review-card {
+    border: 1px solid var(--primary-color);
+    border-radius: 14px;
+    padding: 24px;
+    background: var(--white);
+    box-shadow: 0 12px 28px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 0 0 calc(50% - 12px);
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.review-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-color);
+    object-fit: cover;
+    background: var(--white);
+}
+
+.reviewer-name {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+}
+
+.review-text {
+    margin: 0;
+    color: var(--dark-text);
+    line-height: 1.7;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.review-card.expanded .review-text {
+    display: block;
+    -webkit-line-clamp: unset;
+}
+
+.review-toggle {
+    align-self: flex-start;
+    background: transparent !important;
+    color: var(--accent-color) !important;
+    border: 1px solid var(--accent-color) !important;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.review-toggle:hover,
+.review-toggle:focus {
+    background: var(--accent-color) !important;
+    color: var(--white) !important;
+}
+
+.review-arrow {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: 2px solid var(--primary-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.review-arrow:hover,
+.review-arrow:focus {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.review-arrow:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 32px;
+    text-align: center;
+}
+
+@media (max-width: 700px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.team-card {
+    background: var(--white);
+    border: 1px solid var(--primary-color);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 12px 28px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.team-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-color);
+    object-fit: cover;
+    background: var(--white);
+}
+
+.team-name {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+}
+
+.team-role {
+    margin: 0;
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+.team-bio {
+    margin: 0;
+    color: var(--dark-text);
+    line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+    .review-card {
+        flex: 0 0 100%;
+    }
+
+    .reviews-carousel {
+        gap: 10px;
+    }
 }
 
 /* Read More Button */
